@@ -3,6 +3,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
+  watch: true,
+  watchOptions: {
+    ignored: "**/node_modules",
+  },
   entry: {
     dom: "./src/js/dom.js",
     todo: "./src/js/to-dos.js",

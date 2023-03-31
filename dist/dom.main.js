@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/to-dos.js":
-/*!**************************!*\
-  !*** ./src/js/to-dos.js ***!
-  \**************************/
+/***/ "./src/js/dom.js":
+/*!***********************!*\
+  !*** ./src/js/dom.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createToDo\": () => (/* binding */ createToDo)\n/* harmony export */ });\nconst createToDo = (title, dueDate = \"none\", priority = \"none\") => {\n  return { title, dueDate, priority };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/to-dos.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodoUI\": () => (/* binding */ createTodoUI)\n/* harmony export */ });\nconst createLeftSidebar = () => {\n  const leftSidebar = document.createElement(\"section\");\n  leftSidebar.classList.add(\"left-sidebar\");\n  return leftSidebar;\n};\n\nconst createRightSidebar = () => {\n  const rightSidebar = document.createElement(\"section\");\n  rightSidebar.classList.add(\"right-sidebar\");\n  return rightSidebar;\n};\n\nconst createTodoMain = () => {\n  const todoMain = document.createElement(\"section\");\n  todoMain.classList.add(\"todo-main\");\n  return todoMain;\n};\n\nconst createTodoUI = () => {\n  //\n  const todoContainer = document.createElement(\"main\");\n  todoContainer.classList.add(\"todo-container\");\n\n  todoContainer.appendChild(createLeftSidebar());\n  todoContainer.appendChild(createTodoMain());\n  todoContainer.appendChild(createRightSidebar());\n  return todoContainer;\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/dom.js?");
 
 /***/ })
 
@@ -60,7 +60,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/js/to-dos.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	__webpack_modules__["./src/js/dom.js"](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;
