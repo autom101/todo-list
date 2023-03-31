@@ -1,6 +1,11 @@
 //import js files
 import { createProject } from "./projects.js";
 import { createToDo } from "./to-dos.js";
+import { createToDoUI } from "./dom.js";
+
+//import css
+import "../css/reset.css";
+import "../css/styles.css";
 
 const My_Projects = {};
 
