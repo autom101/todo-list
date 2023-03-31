@@ -7,6 +7,9 @@ import { createTodoUI } from "./dom.js";
 import "../css/reset.css";
 import "../css/styles.css";
 
+//import images
+import "../img/side-bar-images/pencil-outline.svg";
+
 const body = document.querySelector("body");
 body.appendChild(createTodoUI());
 

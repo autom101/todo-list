@@ -18,7 +18,7 @@ body {
   display: flex;
 }
 
-.left-sidebar {
+.sidebar {
   background: linear-gradient(to bottom right, #0284c7, #0ea5e9);
 
   align-self: center;
@@ -35,17 +35,20 @@ body {
   flex-direction: column;
 }
 
-.left-sidebar-heading {
+.sidebar-header {
+  display: flex;
+}
+
+.sidebar-heading {
   text-align: center;
   font-size: 36px;
   font-weight: 800;
-  letter-spacing: 0.2rem;
   text-decoration: underline;
 
   margin-top: 1rem;
 }
 
-.left-sidebar-content {
+.sidebar-content {
   margin-top: 2rem;
   font-size: 32px;
 }

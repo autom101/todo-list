@@ -1,33 +1,38 @@
-const createLeftSidebarContent = () => {
-  const content = document.createElement("section");
-  content.classList.add("left-sidebar-content");
+import pencil from "../img/side-bar-images/pencil-outline.svg";
 
-  const contentHeading = document.createElement("h2");
-  contentHeading.textContent = "Projects";
+const createSidebarHeader = () => {
+  const sidebarHeader = document.createElement("header");
+  sidebarHeader.classList.add("sidebar-header");
 
-  content.appendChild(contentHeading);
+  const sidebarHeading = document.createElement("h1");
+  sidebarHeading.classList.add("sidebar-heading");
+  sidebarHeading.textContent = "My Todo List";
 
-  return content;
+  sidebarHeader.appendChild(sidebarHeading);
+
+  return sidebarHeader;
 };
 
-const createLeftSidebar = () => {
-  const leftSidebar = document.createElement("section");
-  leftSidebar.classList.add("left-sidebar");
+const createSidebarMain = () => {
+  const sidebarMain = document.createElement("main");
+  sidebarMain.classList.add("sidebar-main");
 
-  const leftSidebarHeading = document.createElement("h1");
-  leftSidebarHeading.classList.add("left-sidebar-heading");
-  leftSidebarHeading.textContent = "Todo List";
+  const sidebarMainHeading = document.createElement("h2");
+  sidebarMainHeading.textContent = "Projects";
 
-  leftSidebar.appendChild(leftSidebarHeading);
-  leftSidebar.appendChild(createLeftSidebarContent());
+  sidebarMain.appendChild(sidebarMainHeading);
 
-  return leftSidebar;
+  return sidebarMain;
 };
 
-const createRightSidebar = () => {
-  const rightSidebar = document.createElement("section");
-  rightSidebar.classList.add("right-sidebar");
-  return rightSidebar;
+const createSidebar = () => {
+  const sidebar = document.createElement("section");
+  sidebar.classList.add("sidebar");
+
+  sidebar.appendChild(createSidebarHeader());
+  sidebar.appendChild(createSidebarMain());
+
+  return sidebar;
 };
 
 const createTodoMain = () => {
@@ -41,9 +46,8 @@ const createTodoUI = () => {
   const todoContainer = document.createElement("main");
   todoContainer.classList.add("todo-container");
 
-  todoContainer.appendChild(createLeftSidebar());
+  todoContainer.appendChild(createSidebar());
   todoContainer.appendChild(createTodoMain());
-  todoContainer.appendChild(createRightSidebar());
   return todoContainer;
 };
 

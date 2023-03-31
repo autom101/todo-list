@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \******************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n___CSS_LOADER_EXPORT___.push([module.id, \"@import url(https://fonts.googleapis.com/css2?family=Alkatra&display=swap);\"]);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"* {\\n  box-sizing: border-box;\\n}\\n\\nbody {\\n  height: 100vh;\\n  width: 100vw;\\n  font-family: \\\"Alkatra\\\", cursive;\\n}\\n\\n.todo-container {\\n  width: 100%;\\n  height: 100%;\\n  background: linear-gradient(to bottom right, #f5d0fe, #fb7185, #d8b4fe);\\n  color: #fff;\\n  display: flex;\\n}\\n\\n.left-sidebar {\\n  background: linear-gradient(to bottom right, #0284c7, #0ea5e9);\\n\\n  align-self: center;\\n  width: 16%;\\n  height: 92%;\\n  padding: 1rem;\\n  margin-left: 2rem;\\n\\n  border: 1px solid none;\\n  border-radius: 12px;\\n  box-shadow: 2px 2px 2px 2px #18181b90;\\n\\n  display: flex;\\n  flex-direction: column;\\n}\\n\\n.left-sidebar-heading {\\n  text-align: center;\\n  font-size: 36px;\\n  font-weight: 800;\\n  letter-spacing: 0.2rem;\\n  text-decoration: underline;\\n\\n  margin-top: 1rem;\\n}\\n\\n.left-sidebar-content {\\n  margin-top: 2rem;\\n  font-size: 32px;\\n}\\n\\n.todo-main {\\n  background: linear-gradient(to bottom right, #0284c7, #0ea5e9, #38bdf8);\\n\\n  align-self: center;\\n  margin: 0 2rem;\\n  width: calc(68% - 4rem);\\n  height: 92%;\\n  border: 1px solid none;\\n  border-radius: 12px;\\n\\n  box-shadow: 2px 2px 2px 2px #18181b90;\\n}\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://todo-list/./src/css/styles.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n___CSS_LOADER_EXPORT___.push([module.id, \"@import url(https://fonts.googleapis.com/css2?family=Alkatra&display=swap);\"]);\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"* {\\n  box-sizing: border-box;\\n}\\n\\nbody {\\n  height: 100vh;\\n  width: 100vw;\\n  font-family: \\\"Alkatra\\\", cursive;\\n}\\n\\n.todo-container {\\n  width: 100%;\\n  height: 100%;\\n  background: linear-gradient(to bottom right, #f5d0fe, #fb7185, #d8b4fe);\\n  color: #fff;\\n  display: flex;\\n}\\n\\n.sidebar {\\n  background: linear-gradient(to bottom right, #0284c7, #0ea5e9);\\n\\n  align-self: center;\\n  width: 16%;\\n  height: 92%;\\n  padding: 1rem;\\n  margin-left: 2rem;\\n\\n  border: 1px solid none;\\n  border-radius: 12px;\\n  box-shadow: 2px 2px 2px 2px #18181b90;\\n\\n  display: flex;\\n  flex-direction: column;\\n}\\n\\n.sidebar-header {\\n  display: flex;\\n}\\n\\n.sidebar-heading {\\n  text-align: center;\\n  font-size: 36px;\\n  font-weight: 800;\\n  text-decoration: underline;\\n\\n  margin-top: 1rem;\\n}\\n\\n.sidebar-content {\\n  margin-top: 2rem;\\n  font-size: 32px;\\n}\\n\\n.todo-main {\\n  background: linear-gradient(to bottom right, #0284c7, #0ea5e9, #38bdf8);\\n\\n  align-self: center;\\n  margin: 0 2rem;\\n  width: calc(68% - 4rem);\\n  height: 92%;\\n  border: 1px solid none;\\n  border-radius: 12px;\\n\\n  box-shadow: 2px 2px 2px 2px #18181b90;\\n}\\n\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://todo-list/./src/css/styles.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -136,7 +136,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodoUI\": () => (/* binding */ createTodoUI)\n/* harmony export */ });\nconst createLeftSidebarContent = () => {\n  const content = document.createElement(\"section\");\n  content.classList.add(\"left-sidebar-content\");\n\n  const contentHeading = document.createElement(\"h2\");\n  contentHeading.textContent = \"Projects\";\n\n  content.appendChild(contentHeading);\n\n  return content;\n};\n\nconst createLeftSidebar = () => {\n  const leftSidebar = document.createElement(\"section\");\n  leftSidebar.classList.add(\"left-sidebar\");\n\n  const leftSidebarHeading = document.createElement(\"h1\");\n  leftSidebarHeading.classList.add(\"left-sidebar-heading\");\n  leftSidebarHeading.textContent = \"Todo List\";\n\n  leftSidebar.appendChild(leftSidebarHeading);\n  leftSidebar.appendChild(createLeftSidebarContent());\n\n  return leftSidebar;\n};\n\nconst createRightSidebar = () => {\n  const rightSidebar = document.createElement(\"section\");\n  rightSidebar.classList.add(\"right-sidebar\");\n  return rightSidebar;\n};\n\nconst createTodoMain = () => {\n  const todoMain = document.createElement(\"section\");\n  todoMain.classList.add(\"todo-main\");\n  return todoMain;\n};\n\nconst createTodoUI = () => {\n  //\n  const todoContainer = document.createElement(\"main\");\n  todoContainer.classList.add(\"todo-container\");\n\n  todoContainer.appendChild(createLeftSidebar());\n  todoContainer.appendChild(createTodoMain());\n  todoContainer.appendChild(createRightSidebar());\n  return todoContainer;\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/dom.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodoUI\": () => (/* binding */ createTodoUI)\n/* harmony export */ });\n/* harmony import */ var _img_side_bar_images_pencil_outline_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../img/side-bar-images/pencil-outline.svg */ \"./src/img/side-bar-images/pencil-outline.svg\");\n\nconst createSidebarHeader = () => {\n  const sidebarHeader = document.createElement(\"header\");\n  sidebarHeader.classList.add(\"sidebar-header\");\n\n  const sidebarHeading = document.createElement(\"h1\");\n  sidebarHeading.classList.add(\"sidebar-heading\");\n  sidebarHeading.textContent = \"My Todo List\";\n\n  sidebarHeader.appendChild(sidebarHeading);\n\n  return sidebarHeader;\n};\n\nconst createSidebarMain = () => {\n  const sidebarMain = document.createElement(\"main\");\n  sidebarMain.classList.add(\"sidebar-main\");\n\n  const sidebarMainHeading = document.createElement(\"h2\");\n  sidebarMainHeading.textContent = \"Projects\";\n\n  sidebarMain.appendChild(sidebarMainHeading);\n\n  return sidebarMain;\n};\n\nconst createSidebar = () => {\n  const sidebar = document.createElement(\"section\");\n  sidebar.classList.add(\"sidebar\");\n\n  sidebar.appendChild(createSidebarHeader());\n  sidebar.appendChild(createSidebarMain());\n\n  return sidebar;\n};\n\nconst createTodoMain = () => {\n  const todoMain = document.createElement(\"section\");\n  todoMain.classList.add(\"todo-main\");\n  return todoMain;\n};\n\nconst createTodoUI = () => {\n  //\n  const todoContainer = document.createElement(\"main\");\n  todoContainer.classList.add(\"todo-container\");\n\n  todoContainer.appendChild(createSidebar());\n  todoContainer.appendChild(createTodoMain());\n  return todoContainer;\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/dom.js?");
 
 /***/ }),
 
@@ -146,7 +146,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _projects_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects.js */ \"./src/js/projects.js\");\n/* harmony import */ var _to_dos_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./to-dos.js */ \"./src/js/to-dos.js\");\n/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom.js */ \"./src/js/dom.js\");\n/* harmony import */ var _css_reset_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/reset.css */ \"./src/css/reset.css\");\n/* harmony import */ var _css_styles_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/styles.css */ \"./src/css/styles.css\");\n//import js files\n\n\n\n\n//import css\n\n\n\nconst body = document.querySelector(\"body\");\nbody.appendChild((0,_dom_js__WEBPACK_IMPORTED_MODULE_2__.createTodoUI)());\n\nconst My_Projects = {};\n\nMy_Projects[`Test`] = (0,_projects_js__WEBPACK_IMPORTED_MODULE_0__.createProject)(`Test`);\nMy_Projects[`Test`][`TestToDo`] = (0,_to_dos_js__WEBPACK_IMPORTED_MODULE_1__.createToDo)(`TestToDo`);\nconsole.log(My_Projects);\n\n\n//# sourceURL=webpack://todo-list/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _projects_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects.js */ \"./src/js/projects.js\");\n/* harmony import */ var _to_dos_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./to-dos.js */ \"./src/js/to-dos.js\");\n/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dom.js */ \"./src/js/dom.js\");\n/* harmony import */ var _css_reset_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/reset.css */ \"./src/css/reset.css\");\n/* harmony import */ var _css_styles_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css/styles.css */ \"./src/css/styles.css\");\n/* harmony import */ var _img_side_bar_images_pencil_outline_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../img/side-bar-images/pencil-outline.svg */ \"./src/img/side-bar-images/pencil-outline.svg\");\n//import js files\n\n\n\n\n//import css\n\n\n\n//import images\n\n\nconst body = document.querySelector(\"body\");\nbody.appendChild((0,_dom_js__WEBPACK_IMPORTED_MODULE_2__.createTodoUI)());\n\nconst My_Projects = {};\n\nMy_Projects[`Test`] = (0,_projects_js__WEBPACK_IMPORTED_MODULE_0__.createProject)(`Test`);\nMy_Projects[`Test`][`TestToDo`] = (0,_to_dos_js__WEBPACK_IMPORTED_MODULE_1__.createToDo)(`TestToDo`);\nconsole.log(My_Projects);\n\n\n//# sourceURL=webpack://todo-list/./src/js/index.js?");
 
 /***/ }),
 
@@ -167,6 +167,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createToDo\": () => (/* binding */ createToDo)\n/* harmony export */ });\nconst createToDo = (title, dueDate = \"none\", priority = \"none\") => {\n  return { title, dueDate, priority };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/to-dos.js?");
+
+/***/ }),
+
+/***/ "./src/img/side-bar-images/pencil-outline.svg":
+/*!****************************************************!*\
+  !*** ./src/img/side-bar-images/pencil-outline.svg ***!
+  \****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"c11ca64583db9195885d.svg\";\n\n//# sourceURL=webpack://todo-list/./src/img/side-bar-images/pencil-outline.svg?");
 
 /***/ })
 
@@ -221,6 +231,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -235,6 +257,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */

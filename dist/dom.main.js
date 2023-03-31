@@ -16,14 +16,45 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodoUI\": () => (/* binding */ createTodoUI)\n/* harmony export */ });\nconst createLeftSidebarContent = () => {\n  const content = document.createElement(\"section\");\n  content.classList.add(\"left-sidebar-content\");\n\n  const contentHeading = document.createElement(\"h2\");\n  contentHeading.textContent = \"Projects\";\n\n  content.appendChild(contentHeading);\n\n  return content;\n};\n\nconst createLeftSidebar = () => {\n  const leftSidebar = document.createElement(\"section\");\n  leftSidebar.classList.add(\"left-sidebar\");\n\n  const leftSidebarHeading = document.createElement(\"h1\");\n  leftSidebarHeading.classList.add(\"left-sidebar-heading\");\n  leftSidebarHeading.textContent = \"Todo List\";\n\n  leftSidebar.appendChild(leftSidebarHeading);\n  leftSidebar.appendChild(createLeftSidebarContent());\n\n  return leftSidebar;\n};\n\nconst createRightSidebar = () => {\n  const rightSidebar = document.createElement(\"section\");\n  rightSidebar.classList.add(\"right-sidebar\");\n  return rightSidebar;\n};\n\nconst createTodoMain = () => {\n  const todoMain = document.createElement(\"section\");\n  todoMain.classList.add(\"todo-main\");\n  return todoMain;\n};\n\nconst createTodoUI = () => {\n  //\n  const todoContainer = document.createElement(\"main\");\n  todoContainer.classList.add(\"todo-container\");\n\n  todoContainer.appendChild(createLeftSidebar());\n  todoContainer.appendChild(createTodoMain());\n  todoContainer.appendChild(createRightSidebar());\n  return todoContainer;\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/dom.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createTodoUI\": () => (/* binding */ createTodoUI)\n/* harmony export */ });\n/* harmony import */ var _img_side_bar_images_pencil_outline_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../img/side-bar-images/pencil-outline.svg */ \"./src/img/side-bar-images/pencil-outline.svg\");\n\nconst createSidebarHeader = () => {\n  const sidebarHeader = document.createElement(\"header\");\n  sidebarHeader.classList.add(\"sidebar-header\");\n\n  const sidebarHeading = document.createElement(\"h1\");\n  sidebarHeading.classList.add(\"sidebar-heading\");\n  sidebarHeading.textContent = \"My Todo List\";\n\n  sidebarHeader.appendChild(sidebarHeading);\n\n  return sidebarHeader;\n};\n\nconst createSidebarMain = () => {\n  const sidebarMain = document.createElement(\"main\");\n  sidebarMain.classList.add(\"sidebar-main\");\n\n  const sidebarMainHeading = document.createElement(\"h2\");\n  sidebarMainHeading.textContent = \"Projects\";\n\n  sidebarMain.appendChild(sidebarMainHeading);\n\n  return sidebarMain;\n};\n\nconst createSidebar = () => {\n  const sidebar = document.createElement(\"section\");\n  sidebar.classList.add(\"sidebar\");\n\n  sidebar.appendChild(createSidebarHeader());\n  sidebar.appendChild(createSidebarMain());\n\n  return sidebar;\n};\n\nconst createTodoMain = () => {\n  const todoMain = document.createElement(\"section\");\n  todoMain.classList.add(\"todo-main\");\n  return todoMain;\n};\n\nconst createTodoUI = () => {\n  //\n  const todoContainer = document.createElement(\"main\");\n  todoContainer.classList.add(\"todo-container\");\n\n  todoContainer.appendChild(createSidebar());\n  todoContainer.appendChild(createTodoMain());\n  return todoContainer;\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/dom.js?");
+
+/***/ }),
+
+/***/ "./src/img/side-bar-images/pencil-outline.svg":
+/*!****************************************************!*\
+  !*** ./src/img/side-bar-images/pencil-outline.svg ***!
+  \****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"c11ca64583db9195885d.svg\";\n\n//# sourceURL=webpack://todo-list/./src/img/side-bar-images/pencil-outline.svg?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The require scope
-/******/ 	var __webpack_require__ = {};
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
@@ -36,6 +67,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 				}
 /******/ 			}
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -54,13 +97,32 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/js/dom.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/dom.js");
 /******/ 	
 /******/ })()
 ;
