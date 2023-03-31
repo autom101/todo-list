@@ -1,6 +1,26 @@
+const createLeftSidebarContent = () => {
+  const content = document.createElement("section");
+  content.classList.add("left-sidebar-content");
+
+  const contentHeading = document.createElement("h2");
+  contentHeading.textContent = "Projects";
+
+  content.appendChild(contentHeading);
+
+  return content;
+};
+
 const createLeftSidebar = () => {
   const leftSidebar = document.createElement("section");
   leftSidebar.classList.add("left-sidebar");
+
+  const leftSidebarHeading = document.createElement("h1");
+  leftSidebarHeading.classList.add("left-sidebar-heading");
+  leftSidebarHeading.textContent = "Todo List";
+
+  leftSidebar.appendChild(leftSidebarHeading);
+  leftSidebar.appendChild(createLeftSidebarContent());
+
   return leftSidebar;
 };
 
