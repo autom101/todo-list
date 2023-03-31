@@ -10,26 +10,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/index.js":
-/*!*************************!*\
-  !*** ./src/js/index.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _projects_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects.js */ \"./src/js/projects.js\");\n/* harmony import */ var _to_dos_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./to-dos.js */ \"./src/js/to-dos.js\");\n//import js files\n\n\n\nconst My_Projects = {};\n\nMy_Projects[`Test`] = (0,_projects_js__WEBPACK_IMPORTED_MODULE_0__.createProject)(`Test`);\nMy_Projects[`Test`][`TestToDo`] = (0,_to_dos_js__WEBPACK_IMPORTED_MODULE_1__.createToDo)(`TestToDo`);\nconsole.log(My_Projects);\n\n\n//# sourceURL=webpack://todo-list/./src/js/index.js?");
-
-/***/ }),
-
-/***/ "./src/js/projects.js":
-/*!****************************!*\
-  !*** ./src/js/projects.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createProject\": () => (/* binding */ createProject)\n/* harmony export */ });\nconst createProject = (name) => {\n  //\n  return { name };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/projects.js?");
-
-/***/ }),
-
 /***/ "./src/js/to-dos.js":
 /*!**************************!*\
   !*** ./src/js/to-dos.js ***!
@@ -42,29 +22,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
@@ -100,7 +59,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/index.js");
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/js/to-dos.js"](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;
