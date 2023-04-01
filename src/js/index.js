@@ -10,6 +10,8 @@ import "../css/styles.css";
 
 //import img files
 import "../img/side-bar-images/pencil-outline.svg";
+import "../img/side-bar-images/plus.svg";
+import "../img/todo-images/keyboard-return.svg";
 
 const body = document.querySelector("body");
 const My_Projects = {};

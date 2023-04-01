@@ -1,5 +1,6 @@
 import pencil from "../img/side-bar-images/pencil-outline.svg";
 import plusSign from "../img/side-bar-images/plus.svg";
+import keyboardReturn from "../img/todo-images/keyboard-return.svg";
 
 const createSidebarHeader = () => {
   const sidebarHeader = document.createElement("header");
@@ -53,9 +54,47 @@ const createSidebar = () => {
   return sidebar;
 };
 
+const createTodoForm = () => {
+  const todoForm = document.createElement("form");
+  todoForm.classList.add("todo-form");
+  todoForm.setAttribute("action", "#");
+  todoForm.setAttribute("method", "post");
+
+  const todoNameLabel = document.createElement("label");
+  todoNameLabel.setAttribute("for", "todo-title");
+
+  const todoTypingArea = document.createElement("div");
+  todoTypingArea.classList.add("todo-typing-area");
+
+  const todoName = document.createElement("input");
+  todoName.setAttribute("id", "todo-title");
+  todoName.setAttribute("type", "text");
+  todoName.setAttribute("maxLength", "100");
+  todoName.required = true;
+
+  const submitButton = document.createElement("button");
+  submitButton.setAttribute("type", "submit");
+
+  const returnImage = document.createElement("img");
+  returnImage.src = keyboardReturn;
+  returnImage.classList.add("return-image");
+
+  submitButton.appendChild(returnImage);
+
+  todoTypingArea.appendChild(todoNameLabel);
+  todoTypingArea.appendChild(todoName);
+  todoTypingArea.appendChild(submitButton);
+
+  todoForm.appendChild(todoTypingArea);
+
+  return todoForm;
+};
+
 const createTodoMain = () => {
   const todoMain = document.createElement("section");
   todoMain.classList.add("todo-main");
+
+  todoMain.appendChild(createTodoForm());
   return todoMain;
 };
 
