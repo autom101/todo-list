@@ -37,15 +37,14 @@ body {
 
 .sidebar-header {
   display: flex;
-
   justify-content: space-between;
+  border-bottom: 1px solid #ffffff80;
 }
 
 .sidebar-header h1 {
   text-align: center;
   font-size: 32px;
   font-weight: 800;
-  text-decoration: underline;
 
   margin-top: 1rem;
 }
@@ -58,12 +57,26 @@ body {
 .sidebar-main {
   margin-top: 10rem;
   font-size: 32px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .sidebar-main header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  border-bottom: 1px solid #ffffff80;
+}
+
+.sidebar-main main {
+  font-size: 28px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 img.add-project {
