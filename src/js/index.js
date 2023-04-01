@@ -2,6 +2,7 @@
 import { createProject } from "./projects.js";
 import { createToDo } from "./to-dos.js";
 import { createTodoUI } from "./dom.js";
+import { createListeners } from "./event-listeners.js";
 
 //import css files
 import "../css/reset.css";
@@ -19,3 +20,5 @@ My_Projects["2"] = createProject("Slkjasdf");
 console.log(My_Projects);
 
 body.appendChild(createTodoUI(My_Projects));
+
+createListeners(My_Projects, createProject);

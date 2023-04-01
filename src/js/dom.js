@@ -9,6 +9,7 @@ const createSidebarHeader = () => {
   sidebarHeading.textContent = "My Todo List";
 
   const sidebarPencil = document.createElement("img");
+  sidebarPencil.classList.add("pencil");
   sidebarPencil.src = pencil;
 
   sidebarHeader.appendChild(sidebarHeading);
@@ -19,13 +20,15 @@ const createSidebarHeader = () => {
 
 const displayProjects = (projectsContainer) => {
   const projects = document.createElement("main");
+  projects.classList.add("project-list");
 
-  const projectObjects = Object.keys(projectsContainer);
+  const projectObjects = [];
 
   let index = 0;
-  projectObjects.forEach((project) => {
+  Object.keys(projectsContainer).forEach((project) => {
     projectObjects[index] = document.createElement("h3");
     projectObjects[index].textContent = projectsContainer[project].name;
+    projectObjects[index].classList.add("project-title");
 
     projects.appendChild(projectObjects[index]);
 
@@ -46,7 +49,7 @@ const createSidebarMain = (projectsContainer) => {
 
   const sidebarPlusSign = document.createElement("img");
   sidebarPlusSign.src = plusSign;
-  sidebarPlusSign.classList.add("add-project");
+  sidebarPlusSign.classList.add("plus");
 
   sidebarMainHeading.appendChild(headingTitle);
   sidebarMainHeading.appendChild(sidebarPlusSign);

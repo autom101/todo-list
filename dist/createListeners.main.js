@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/projects.js":
-/*!****************************!*\
-  !*** ./src/js/projects.js ***!
-  \****************************/
+/***/ "./src/js/event-listeners.js":
+/*!***********************************!*\
+  !*** ./src/js/event-listeners.js ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createProject\": () => (/* binding */ createProject)\n/* harmony export */ });\nconst createProject = (name = \"test\") => {\n  //\n  return { name };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/projects.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createListeners\": () => (/* binding */ createListeners)\n/* harmony export */ });\nconst addToList = (newChild) => {\n  const sidebarMain = document.querySelector(\".project-list\");\n  const newTitle = document.createElement(\"h3\");\n  newTitle.classList.add(\"project-title\");\n  newTitle.textContent = newChild.name;\n  sidebarMain.appendChild(newTitle);\n};\n\nlet count = 1;\n\nconst createListeners = (projectsObject, createProject) => {\n  const addProject = document.querySelector(\".plus\");\n  addProject.addEventListener(\"click\", (e) => {\n    projectsObject[`newProject${count}`] = createProject(`${count}`);\n    addToList(projectsObject[`newProject${count}`]);\n    count++;\n  });\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/event-listeners.js?");
 
 /***/ })
 
@@ -60,7 +60,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/js/projects.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	__webpack_modules__["./src/js/event-listeners.js"](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;

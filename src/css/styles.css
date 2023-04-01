@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  cursor: default;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
 
   align-self: center;
   width: 20%;
-  height: 92%;
+  height: calc(100% - 4rem);
   padding: 1rem;
   margin-left: 2rem;
 
@@ -49,9 +50,16 @@ body {
   margin-top: 1rem;
 }
 
-.sidebar-header img {
+.pencil {
   height: 2.5rem;
   align-self: end;
+}
+
+.pencil:hover,
+.plus:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  scale: 1.05;
 }
 
 .sidebar-main {
@@ -79,8 +87,16 @@ body {
   gap: 1rem;
 }
 
-img.add-project {
+img.plus {
   height: 2rem;
+}
+
+.project-title:hover {
+  cursor: pointer;
+}
+
+.project-title:hover::before {
+  content: "-> ";
 }
 
 .todo-main {
@@ -89,7 +105,7 @@ img.add-project {
   align-self: center;
   margin: 0 2rem;
   width: 75%;
-  height: 92%;
+  height: calc(100% - 4rem);
   border: 1px solid none;
   border-radius: 12px;
 

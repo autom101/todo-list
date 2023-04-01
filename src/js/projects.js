@@ -1,4 +1,4 @@
-const createProject = (name) => {
+const createProject = (name = "test") => {
   //
   return { name };
 };
