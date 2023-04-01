@@ -69,6 +69,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  overflow: hidden;
 }
 
 .sidebar-main header {
@@ -79,16 +81,24 @@ body {
   border-bottom: 1px solid #ffffff80;
 }
 
-.sidebar-main main {
+img.plus {
+  height: 2rem;
+}
+
+.project-list {
   font-size: 28px;
 
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
 }
 
-img.plus {
-  height: 2rem;
+.project-list::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 .project-title:hover {

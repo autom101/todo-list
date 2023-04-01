@@ -18,27 +18,7 @@ const createSidebarHeader = () => {
   return sidebarHeader;
 };
 
-const displayProjects = (projectsContainer) => {
-  const projects = document.createElement("main");
-  projects.classList.add("project-list");
-
-  const projectObjects = [];
-
-  let index = 0;
-  Object.keys(projectsContainer).forEach((project) => {
-    projectObjects[index] = document.createElement("h3");
-    projectObjects[index].textContent = projectsContainer[project].name;
-    projectObjects[index].classList.add("project-title");
-
-    projects.appendChild(projectObjects[index]);
-
-    index++;
-  });
-
-  return projects;
-};
-
-const createSidebarMain = (projectsContainer) => {
+const createSidebarMain = () => {
   const sidebarMain = document.createElement("main");
   sidebarMain.classList.add("sidebar-main");
 
@@ -51,38 +31,41 @@ const createSidebarMain = (projectsContainer) => {
   sidebarPlusSign.src = plusSign;
   sidebarPlusSign.classList.add("plus");
 
+  const projectTitleList = document.createElement("main");
+  projectTitleList.classList.add("project-list");
+
   sidebarMainHeading.appendChild(headingTitle);
   sidebarMainHeading.appendChild(sidebarPlusSign);
 
   sidebarMain.appendChild(sidebarMainHeading);
-  sidebarMain.appendChild(displayProjects(projectsContainer));
+  sidebarMain.appendChild(projectTitleList);
 
   return sidebarMain;
 };
 
-const createSidebar = (projectsContainer) => {
+const createSidebar = () => {
   const sidebar = document.createElement("section");
   sidebar.classList.add("sidebar");
 
   sidebar.appendChild(createSidebarHeader());
-  sidebar.appendChild(createSidebarMain(projectsContainer));
+  sidebar.appendChild(createSidebarMain());
 
   return sidebar;
 };
 
-const createTodoMain = (projectsContainer) => {
+const createTodoMain = () => {
   const todoMain = document.createElement("section");
   todoMain.classList.add("todo-main");
   return todoMain;
 };
 
-const createTodoUI = (projectsContainer) => {
+const createTodoUI = () => {
   //
   const todoContainer = document.createElement("main");
   todoContainer.classList.add("todo-container");
 
-  todoContainer.appendChild(createSidebar(projectsContainer));
-  todoContainer.appendChild(createTodoMain(projectsContainer));
+  todoContainer.appendChild(createSidebar());
+  todoContainer.appendChild(createTodoMain());
   return todoContainer;
 };
 
