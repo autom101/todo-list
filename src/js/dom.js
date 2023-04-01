@@ -68,6 +68,7 @@ const createTodoForm = () => {
 
   const todoName = document.createElement("input");
   todoName.setAttribute("id", "todo-title");
+  todoName.setAttribute("name", "todo-title");
   todoName.setAttribute("type", "text");
   todoName.setAttribute("maxLength", "162");
   todoName.required = true;

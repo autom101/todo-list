@@ -6,15 +6,43 @@ const addToList = (newChild) => {
   sidebarMain.appendChild(newTitle);
 };
 
-let count = 1;
-
-const createListeners = (projectsObject, createProject) => {
+const createProjectTitleListener = (projectsObject, createProject) => {
   const addProject = document.querySelector(".plus");
+  let count = 1;
+
   addProject.addEventListener("click", (e) => {
     projectsObject[`newProject${count}`] = createProject(`${count}`);
     addToList(projectsObject[`newProject${count}`]);
     count++;
   });
+};
+
+const handleFormSubmit = (todoForm, createToDo) => {
+  const formData = new FormData(todoForm);
+  const todoTitle = document.createElement("h4");
+  todoTitle.textContent = formData.get("todo-title");
+  createToDo(todoTitle.textContent);
+
+  const todoMain = document.querySelector(".todo-main");
+  todoMain.insertAdjacentElement("afterbegin", todoTitle);
+
+  return false;
+};
+
+const createTodoSubmitListener = (createToDo) => {
+  const todoForm = document.querySelector(".todo-form");
+  const todoInput = document.querySelector("#todo-title");
+
+  todoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    handleFormSubmit(todoForm, createToDo);
+    todoForm.reset();
+  });
+};
+
+const createListeners = (projectsObject, createProject, createToDo) => {
+  createProjectTitleListener(projectsObject, createProject);
+  createTodoSubmitListener(createToDo);
 };
 
 export { createListeners };
