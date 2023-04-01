@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  watch: false,
+  watch: true,
   watchOptions: {
     ignored: "**/node_modules",
   },

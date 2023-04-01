@@ -22,7 +22,7 @@ body {
   background: linear-gradient(to bottom right, #0284c7, #0ea5e9);
 
   align-self: center;
-  width: 16%;
+  width: 20%;
   height: 92%;
   padding: 1rem;
   margin-left: 2rem;
@@ -37,20 +37,37 @@ body {
 
 .sidebar-header {
   display: flex;
+
+  justify-content: space-between;
 }
 
-.sidebar-heading {
+.sidebar-header h1 {
   text-align: center;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 800;
   text-decoration: underline;
 
   margin-top: 1rem;
 }
 
-.sidebar-content {
-  margin-top: 2rem;
+.sidebar-header img {
+  height: 2.5rem;
+  align-self: end;
+}
+
+.sidebar-main {
+  margin-top: 10rem;
   font-size: 32px;
+}
+
+.sidebar-main header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+img.add-project {
+  height: 2rem;
 }
 
 .todo-main {
@@ -58,7 +75,7 @@ body {
 
   align-self: center;
   margin: 0 2rem;
-  width: calc(68% - 4rem);
+  width: 75%;
   height: 92%;
   border: 1px solid none;
   border-radius: 12px;

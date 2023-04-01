@@ -1,14 +1,18 @@
 import pencil from "../img/side-bar-images/pencil-outline.svg";
+import plusSign from "../img/side-bar-images/plus.svg";
 
 const createSidebarHeader = () => {
   const sidebarHeader = document.createElement("header");
   sidebarHeader.classList.add("sidebar-header");
 
   const sidebarHeading = document.createElement("h1");
-  sidebarHeading.classList.add("sidebar-heading");
   sidebarHeading.textContent = "My Todo List";
 
+  const sidebarPencil = document.createElement("img");
+  sidebarPencil.src = pencil;
+
   sidebarHeader.appendChild(sidebarHeading);
+  sidebarHeader.appendChild(sidebarPencil);
 
   return sidebarHeader;
 };
@@ -17,8 +21,17 @@ const createSidebarMain = () => {
   const sidebarMain = document.createElement("main");
   sidebarMain.classList.add("sidebar-main");
 
-  const sidebarMainHeading = document.createElement("h2");
-  sidebarMainHeading.textContent = "Projects";
+  const sidebarMainHeading = document.createElement("header");
+
+  const headingTitle = document.createElement("h2");
+  headingTitle.textContent = "Projects";
+
+  const sidebarPlusSign = document.createElement("img");
+  sidebarPlusSign.src = plusSign;
+  sidebarPlusSign.classList.add("add-project");
+
+  sidebarMainHeading.appendChild(headingTitle);
+  sidebarMainHeading.appendChild(sidebarPlusSign);
 
   sidebarMain.appendChild(sidebarMainHeading);
 
