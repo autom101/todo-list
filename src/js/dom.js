@@ -69,11 +69,12 @@ const createTodoForm = () => {
   const todoName = document.createElement("input");
   todoName.setAttribute("id", "todo-title");
   todoName.setAttribute("type", "text");
-  todoName.setAttribute("maxLength", "100");
+  todoName.setAttribute("maxLength", "162");
   todoName.required = true;
 
   const submitButton = document.createElement("button");
   submitButton.setAttribute("type", "submit");
+  submitButton.classList.add("todo-button");
 
   const returnImage = document.createElement("img");
   returnImage.src = keyboardReturn;
