@@ -151,8 +151,21 @@ img.plus {
   overflow-y: scroll;
 }
 
-.todo-list li {
-  list-style-type: circle;
+.to-do {
+  position: relative;
+}
+
+.crossed {
+  font-style: italic;
+  color: #cbd5e1;
+}
+
+.strikethrough-todo {
+  position: absolute;
+  border-bottom: 2px solid #000;
+  top: 37%;
+  width: 100%;
+  height: 2px;
 }
 
 .todo-form {
