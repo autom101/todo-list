@@ -19,19 +19,18 @@ const createProjectTitleListener = (projectsObject, createProject) => {
 
 const handleFormSubmit = (todoForm, createToDo) => {
   const formData = new FormData(todoForm);
-  const todoTitle = document.createElement("h4");
+  const todoTitle = document.createElement("li");
   todoTitle.textContent = formData.get("todo-title");
-  createToDo(todoTitle.textContent);
+  const newTodo = createToDo(todoTitle.textContent);
 
-  const todoMain = document.querySelector(".todo-main");
-  todoMain.insertAdjacentElement("afterbegin", todoTitle);
+  const todoList = document.querySelector(".todo-list");
+  todoList.insertAdjacentElement("beforeend", todoTitle);
 
   return false;
 };
 
 const createTodoSubmitListener = (createToDo) => {
   const todoForm = document.querySelector(".todo-form");
-  const todoInput = document.querySelector("#todo-title");
 
   todoForm.addEventListener("submit", (e) => {
     e.preventDefault();

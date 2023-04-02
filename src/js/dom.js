@@ -92,10 +92,18 @@ const createTodoForm = () => {
   return todoForm;
 };
 
+const createTodoList = () => {
+  const todoList = document.createElement("ul");
+  todoList.classList.add("todo-list");
+
+  return todoList;
+};
+
 const createTodoMain = () => {
   const todoMain = document.createElement("section");
   todoMain.classList.add("todo-main");
 
+  todoMain.appendChild(createTodoList());
   todoMain.appendChild(createTodoForm());
   return todoMain;
 };

@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
   cursor: default;
+  user-select: none;
 }
 
 body {
@@ -98,7 +99,8 @@ img.plus {
   overflow-y: scroll;
 }
 
-.project-list::-webkit-scrollbar {
+.project-list::-webkit-scrollbar,
+.todo-list::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }
 
@@ -128,6 +130,29 @@ img.plus {
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.todo-list {
+  width: 80%;
+  height: 87%;
+  margin: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  font-size: 1.5rem;
+  list-style-position: inside;
+  list-style-type: circle;
+
+  -ms-overflow-style: none; /*for Internet Explorer, Edge*/
+  scrollbar-width: none; /*for Firefox*/
+  overflow-y: scroll;
+}
+
+.todo-list li {
+  list-style-type: circle;
 }
 
 .todo-form {
@@ -135,6 +160,7 @@ img.plus {
   margin-top: auto;
 
   width: 100%;
+  height: 13%;
 
   justify-content: center;
 }
@@ -173,7 +199,7 @@ img.plus {
   line-height: 2rem;
   margin-top: auto;
   border: 2px solid none;
-  border-radius: 6px;
+  border-radius: 12px;
   outline: none;
 }
 
