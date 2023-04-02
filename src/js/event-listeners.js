@@ -1,19 +1,38 @@
-const addToList = (newChild) => {
+let currentView = {};
+
+const addToList = (projectsContainer, newChild, index) => {
   const sidebarMain = document.querySelector(".project-list");
   const newTitle = document.createElement("h3");
   newTitle.classList.add("project-title");
+  newTitle.classList.add(`project-${index}`);
   newTitle.textContent = newChild.name;
   sidebarMain.appendChild(newTitle);
+
+  displayProjectTodos(projectsContainer, newChild, index);
+};
+
+const displayProjectTodos = (projectsContainer, currentProject, index) => {
+  const project = document.querySelector(`.project-${index}`);
+  if (document.body.contains(project)) {
+    project.addEventListener("click", (e) => {
+      currentView = currentProject;
+      console.log(`Hi from project ${index}`);
+    });
+  }
+
+  return false;
 };
 
 const createProjectTitleListener = (projectsObject, createProject) => {
   const addProject = document.querySelector(".plus");
-  let count = 1;
+  let index = 1;
 
   addProject.addEventListener("click", (e) => {
-    projectsObject[`newProject${count}`] = createProject(`${count}`);
-    addToList(projectsObject[`newProject${count}`]);
-    count++;
+    const newProject = createProject(`${index}`);
+    projectsObject[`newProject${index}`] = newProject;
+    addToList(projectsObject, newProject, index);
+
+    index++;
   });
 };
 
@@ -31,12 +50,14 @@ const handleTodoStrikeThrough = (todoTitle, newTodo) => {
   });
 };
 
-const handleFormSubmit = (todoForm, createToDo) => {
+const handleFormSubmit = (todoForm, createToDo, index) => {
   const formData = new FormData(todoForm);
   const todoTitle = document.createElement("li");
   todoTitle.classList.add("to-do");
   todoTitle.textContent = formData.get("todo-title");
   const newTodo = createToDo(todoTitle.textContent);
+  currentView[`new-todo-${index}`] = newTodo;
+  console.log(currentView);
 
   handleTodoStrikeThrough(todoTitle, newTodo);
 
@@ -47,12 +68,14 @@ const handleFormSubmit = (todoForm, createToDo) => {
 };
 
 const createTodoSubmitListener = (createToDo) => {
+  let index = 1;
   const todoForm = document.querySelector(".todo-form");
 
   todoForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleFormSubmit(todoForm, createToDo);
+    handleFormSubmit(todoForm, createToDo, index);
     todoForm.reset();
+    index++;
   });
 };
 
