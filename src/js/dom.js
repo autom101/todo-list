@@ -2,6 +2,10 @@ import pencil from "../img/side-bar-images/pencil-outline.svg";
 import plusSign from "../img/side-bar-images/plus.svg";
 import keyboardReturn from "../img/todo-images/keyboard-return.svg";
 
+/* This module generates elements for the dom and is divided mainly into two subsections:
+1. Main -> This creates the big block on the center of the webpage
+2. Sidebar -> This creates the sidebar on the left of the page*/
+
 const createSidebarHeader = () => {
   const sidebarHeader = document.createElement("header");
   sidebarHeader.classList.add("sidebar-header");
