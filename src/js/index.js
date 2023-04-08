@@ -2,7 +2,7 @@
 import { createProject } from "./projects.js";
 import { createToDo } from "./to-dos.js";
 import { createTodoUI } from "./dom.js";
-import { createListeners } from "./event-listeners.js";
+import { createListeners } from "./program-logic.js";
 
 //import css files
 import "../css/reset.css";
@@ -13,9 +13,15 @@ import "../img/side-bar-images/pencil-outline.svg";
 import "../img/side-bar-images/plus.svg";
 import "../img/todo-images/keyboard-return.svg";
 
-const body = document.querySelector("body");
-const My_Projects = {};
+onload = () => {
+  const body = document.querySelector("body");
+  const My_Projects = {};
 
-body.appendChild(createTodoUI(My_Projects));
+  body.appendChild(createTodoUI(My_Projects));
 
-createListeners(My_Projects, createProject, createToDo);
+  createListeners(My_Projects, createProject, createToDo);
+
+  if (localStorage != null) {
+    console.log(JSON.parse(localStorage.getItem("1")));
+  }
+};

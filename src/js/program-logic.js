@@ -4,7 +4,7 @@ Todos:
 1. 
 
 */
-
+/* This module handles program logic such as event listeners, and other functions */
 let currentView = {};
 
 //Add project title to projects list on sidebar
@@ -40,7 +40,7 @@ const showProjectTodos = (project) => {
 const displayProjectTodos = (projectsContainer, currentProject, index) => {
   const project = document.querySelector(`.project-${index}`);
   if (document.body.contains(project)) {
-    project.addEventListener("click", (e) => {
+    project.addEventListener("click", () => {
       currentView = currentProject;
       showProjectTodos(currentView);
       console.log(`Hi from project ${index}`);
@@ -117,7 +117,7 @@ const handleFormSubmit = (todoForm, createToDo, index) => {
   const todoList = document.querySelector(".todo-list");
   todoList.insertAdjacentElement("beforeend", todoDom);
 
-  return false;
+  localStorage.setItem(`${currentView.name}`, JSON.stringify(currentView));
 };
 // Checks for any todo's that are submitted, whether that be through pressing the enter key, or through clicking the submit button
 const createTodoSubmitListener = (createToDo) => {

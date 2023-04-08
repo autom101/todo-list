@@ -11,7 +11,7 @@ module.exports = {
     dom: "./src/js/dom.js",
     todo: "./src/js/to-dos.js",
     project: "./src/js/projects.js",
-    createListeners: "./src/js/event-listeners.js",
+    programLogic: "./src/js/program-logic.js",
     index: "./src/js/index.js",
   },
   plugins: [
