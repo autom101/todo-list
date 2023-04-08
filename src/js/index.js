@@ -2,7 +2,7 @@
 import { createProject } from "./projects.js";
 import { createToDo } from "./to-dos.js";
 import { createTodoUI } from "./dom.js";
-import { createListeners } from "./program-logic.js";
+import { createLogic, addToProjectsList } from "./program-logic.js";
 
 //import css files
 import "../css/reset.css";
@@ -19,9 +19,17 @@ onload = () => {
 
   body.appendChild(createTodoUI(My_Projects));
 
-  createListeners(My_Projects, createProject, createToDo);
+  createLogic(My_Projects, createProject, createToDo, localStorage.length || 1);
 
   if (localStorage != null) {
-    console.log(JSON.parse(localStorage.getItem("1")));
+    for (let i = 1; i <= localStorage.length; i++) {
+      if (localStorage.getItem(localStorage.key(i))) {
+        My_Projects[`Project-${i}`] = JSON.parse(
+          localStorage.getItem(localStorage.key(i))
+        );
+        addToProjectsList(My_Projects[`Project-${i}`], localStorage.length + i);
+      }
+    }
+    console.log(My_Projects);
   }
 };

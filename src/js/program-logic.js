@@ -1,22 +1,19 @@
-/* 
-Todos:
-
-1. 
-
+/*
+  This module handles program logic such as event listeners, and other functions 
 */
-/* This module handles program logic such as event listeners, and other functions */
+
 let currentView = {};
 
 //Add project title to projects list on sidebar
-const addToProjectsList = (projectsContainer, newChild, index) => {
+const addToProjectsList = (newProject, index) => {
   const sidebarMain = document.querySelector(".project-list");
   const newTitle = document.createElement("h3");
   newTitle.classList.add("project-title");
   newTitle.classList.add(`project-${index}`);
-  newTitle.textContent = newChild.name;
+  newTitle.textContent = newProject.name;
   sidebarMain.appendChild(newTitle);
 
-  displayProjectTodos(projectsContainer, newChild, index);
+  displayProjectTodos(newProject, index);
 };
 
 //Shows all todos inside a specific project to the user
@@ -36,29 +33,25 @@ const showProjectTodos = (project) => {
   }
 };
 
-//
-const displayProjectTodos = (projectsContainer, currentProject, index) => {
+//Calls showProjectTodos everytime a project's title is clicked on the sidebar
+const displayProjectTodos = (currentProject, index) => {
   const project = document.querySelector(`.project-${index}`);
   if (document.body.contains(project)) {
     project.addEventListener("click", () => {
       currentView = currentProject;
       showProjectTodos(currentView);
-      console.log(`Hi from project ${index}`);
-      console.log(projectsContainer);
     });
   }
-  return false;
 };
 
 // Creates a new project whenever the plus sign on the page is clicked
-const createProjectTitleListener = (projectsObject, createProject) => {
+const createProjectTitleListener = (projectsObject, createProject, index) => {
   const addProject = document.querySelector(".plus");
-  let index = 1;
 
-  addProject.addEventListener("click", (e) => {
+  addProject.addEventListener("click", () => {
     const newProject = createProject(`${index}`);
     projectsObject[`newProject${index}`] = newProject;
-    addToProjectsList(projectsObject, newProject, index);
+    addToProjectsList(newProject, index);
 
     index++;
   });
@@ -67,7 +60,6 @@ const createProjectTitleListener = (projectsObject, createProject) => {
 const strikethroughTodo = (todoDom) => {
   const strikethroughDiv = document.createElement("div");
   strikethroughDiv.classList.add("strikethrough-todo");
-  console.log("I am now stuck through");
   todoDom.classList.toggle("crossed");
   todoDom.appendChild(strikethroughDiv);
 };
@@ -76,7 +68,6 @@ const strikethroughTodo = (todoDom) => {
 const strikethroughTodoDom = (todoDom, todoObject) => {
   if (todoObject.isCrossed) {
     const strikethroughDiv = document.querySelector(".strikethrough-todo");
-    console.log("I am now not stuck through");
     todoDom.classList.toggle("crossed");
     todoDom.removeChild(strikethroughDiv);
     todoObject.isCrossed = false;
@@ -112,13 +103,12 @@ const handleFormSubmit = (todoForm, createToDo, index) => {
   const todoDom = createTodoInDom(todoTitle, newTodo);
   todoDom.textContent = todoTitle;
 
-  console.log(currentView);
-
   const todoList = document.querySelector(".todo-list");
   todoList.insertAdjacentElement("beforeend", todoDom);
 
   localStorage.setItem(`${currentView.name}`, JSON.stringify(currentView));
 };
+
 // Checks for any todo's that are submitted, whether that be through pressing the enter key, or through clicking the submit button
 const createTodoSubmitListener = (createToDo) => {
   let index = 1;
@@ -132,13 +122,9 @@ const createTodoSubmitListener = (createToDo) => {
   });
 };
 
-const createListeners = (projectsObject, createProject, createToDo) => {
-  createProjectTitleListener(projectsObject, createProject);
+const createLogic = (projectsObject, createProject, createToDo, index) => {
+  createProjectTitleListener(projectsObject, createProject, index);
   createTodoSubmitListener(createToDo);
 };
 
-export { createListeners };
-
-/* To-dos:
-1: Make 1 project hold to-dos when it is clicked (DONE)
-2: Only display to-dos from that project (DONE) */
+export { createLogic, addToProjectsList };
