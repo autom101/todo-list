@@ -1,5 +1,10 @@
-const createToDo = (title, dueDate = "none", priority = "none") => {
-  return { title, dueDate, priority };
+const createToDo = (
+  title,
+  dueDate = "none",
+  priority = "none",
+  isCrossed = false
+) => {
+  return { title, dueDate, priority, isCrossed };
 };
 
 export { createToDo };

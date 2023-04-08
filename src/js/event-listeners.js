@@ -1,6 +1,9 @@
-/* To-dos:
-1: Make 1 project hold to-dos when it is clicked (DONE)
-2: Only display to-dos from that project (IN-PROGRESS) */
+/* 
+Todos:
+
+1. 
+
+*/
 
 let currentView = {};
 
@@ -15,6 +18,7 @@ const addToProjectsList = (projectsContainer, newChild, index) => {
 
   displayProjectTodos(projectsContainer, newChild, index);
 };
+
 //Shows all todos inside a specific project to the user
 const showProjectTodos = (project) => {
   const todoList = document.querySelector(".todo-list");
@@ -25,8 +29,9 @@ const showProjectTodos = (project) => {
       index++;
       setTimeout(() => {
         let todoTitle = createTodoInDom(project[todo].title);
+        project[todo].isCrossed && strikethroughTodo(todoTitle);
         todoList.appendChild(todoTitle);
-      }, 250 * index);
+      }, 100 * index);
     }
   }
 };
@@ -59,41 +64,58 @@ const createProjectTitleListener = (projectsObject, createProject) => {
   });
 };
 
-// Creates an event listener to "strikethrough" or "cross out" a to-do when a user clicks on it
-const handleTodoStrikeThrough = (todoTitle, newTodo = "") => {
+const strikethroughTodo = (todoDom) => {
   const strikethroughDiv = document.createElement("div");
   strikethroughDiv.classList.add("strikethrough-todo");
+  console.log("I am now stuck through");
+  todoDom.classList.toggle("crossed");
+  todoDom.appendChild(strikethroughDiv);
+};
 
-  todoTitle.addEventListener("click", (e) => {
-    if (todoTitle.contains(strikethroughDiv)) {
-      todoTitle.removeChild(strikethroughDiv);
-    } else {
-      todoTitle.appendChild(strikethroughDiv);
-    }
-    todoTitle.classList.toggle("crossed");
+//Strikes through or removes strikethrough from an existing todo
+const strikethroughTodoDom = (todoDom, todoObject) => {
+  if (todoObject.isCrossed) {
+    const strikethroughDiv = document.querySelector(".strikethrough-todo");
+    console.log("I am now not stuck through");
+    todoDom.classList.toggle("crossed");
+    todoDom.removeChild(strikethroughDiv);
+    todoObject.isCrossed = false;
+  } else {
+    strikethroughTodo(todoDom);
+    todoObject.isCrossed = true;
+  }
+  console.log(todoObject);
+};
+
+// Creates an event listener to "strikethrough" or "cross out" a to-do when a user clicks on it
+const strikethroughListener = (todoTitle, newTodo = {}) => {
+  todoTitle.addEventListener("click", () => {
+    strikethroughTodoDom(todoTitle, newTodo);
   });
 };
 
-const createTodoInDom = (content) => {
-  const todoTitle = document.createElement("li");
-  todoTitle.textContent = content;
-  todoTitle.classList.add("to-do");
-  handleTodoStrikeThrough(todoTitle);
-  return todoTitle;
+const createTodoInDom = (content, todoObject) => {
+  const todoDom = document.createElement("li");
+  todoDom.textContent = content;
+  todoDom.classList.add("to-do");
+  strikethroughListener(todoDom, todoObject);
+  return todoDom;
 };
+
 // Gets form data whenever users presss submit or hit enter and creates a new todo with that information then inserts it into the document
 const handleFormSubmit = (todoForm, createToDo, index) => {
   const formData = new FormData(todoForm);
-  const todoTitle = createTodoInDom(formData.get("todo-title"));
-  todoTitle.textContent = formData.get("todo-title");
-  const newTodo = createToDo(todoTitle.textContent);
+  const todoTitle = formData.get("todo-title");
+  const newTodo = createToDo(todoTitle);
+
   currentView[`new-todo-${index}`] = newTodo;
+  const todoDom = createTodoInDom(todoTitle, newTodo);
+  todoDom.textContent = todoTitle;
+
   console.log(currentView);
 
-  handleTodoStrikeThrough(todoTitle, newTodo);
-
   const todoList = document.querySelector(".todo-list");
-  todoList.insertAdjacentElement("beforeend", todoTitle);
+  todoList.insertAdjacentElement("beforeend", todoDom);
 
   return false;
 };
@@ -116,3 +138,7 @@ const createListeners = (projectsObject, createProject, createToDo) => {
 };
 
 export { createListeners };
+
+/* To-dos:
+1: Make 1 project hold to-dos when it is clicked (DONE)
+2: Only display to-dos from that project (DONE) */
