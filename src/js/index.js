@@ -15,21 +15,37 @@ import "../img/todo-images/keyboard-return.svg";
 
 onload = () => {
   const body = document.querySelector("body");
-  const My_Projects = {};
+
+  let error = "";
+  try {
+    JSON.parse(localStorage.getItem("My_Projects"));
+  } catch (e) {
+    error = e;
+    console.log(error);
+  } finally {
+    if (error) {
+      localStorage.removeItem("My_Projects");
+    }
+  }
+
+  const My_Projects = JSON.parse(localStorage.getItem("My_Projects")) || {};
 
   body.appendChild(createTodoUI(My_Projects));
-
-  createLogic(My_Projects, createProject, createToDo, localStorage.length || 1);
+  console.log(My_Projects);
+  createLogic(
+    My_Projects,
+    createProject,
+    createToDo,
+    Object.keys(My_Projects).length + 1 || 1
+  );
 
   if (localStorage != null) {
-    for (let i = 1; i <= localStorage.length; i++) {
-      if (localStorage.getItem(localStorage.key(i))) {
-        My_Projects[`Project-${i}`] = JSON.parse(
-          localStorage.getItem(localStorage.key(i))
-        );
-        addToProjectsList(My_Projects[`Project-${i}`], localStorage.length + i);
+    if (localStorage.getItem("My_Projects")) {
+      let count = 1;
+      for (let key in My_Projects) {
+        addToProjectsList(My_Projects[key], count);
+        count++;
       }
     }
-    console.log(My_Projects);
   }
 };

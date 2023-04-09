@@ -12,6 +12,7 @@ const createSidebarHeader = () => {
 
   const sidebarHeading = document.createElement("h1");
   sidebarHeading.textContent = "My Todo List";
+  sidebarHeading.setAttribute("contenteditable", true);
 
   const sidebarPencil = document.createElement("img");
   sidebarPencil.classList.add("pencil");
