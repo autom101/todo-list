@@ -146,14 +146,30 @@ const createHeaderForm = () => {
   headerName.setAttribute("type", "text");
   headerName.setAttribute("maxLength", 20);
 
+  const headerNameLabel = document.createElement("label");
+  headerNameLabel.setAttribute("for", "header-name");
+  headerNameLabel.classList.add("header-name-label");
+  headerNameLabel.textContent = "New Todo List Title";
+
   const headerNameButton = document.createElement("button");
   headerNameButton.textContent = "Submit";
   headerNameButton.setAttribute("type", "submit");
   headerNameButton.classList.add("todo-title-button");
 
+  headerForm.appendChild(headerNameLabel);
   headerForm.appendChild(headerName);
   headerForm.appendChild(headerNameButton);
   document.querySelector(".sidebar-header").appendChild(headerForm);
+
+  headerName.focus();
+
+  headerForm.addEventListener(
+    "blur",
+    (e) => {
+      document.querySelector(".sidebar-header").removeChild(headerForm);
+    },
+    true
+  );
 
   headerForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -164,7 +180,9 @@ const createHeaderForm = () => {
 const changeHeaderTitle = () => {
   const pencil = document.querySelector(".pencil");
   pencil.addEventListener("click", (e) => {
+    document.querySelector(".todo-list-title").classList.toggle("hide");
     createHeaderForm();
+    document.querySelector(".todo-list-title").classList.toggle("hide");
   });
 };
 
