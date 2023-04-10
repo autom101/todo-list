@@ -131,7 +131,6 @@ const parseHeaderFormSubmit = (headerForm) => {
 
   currentHeader.textContent = newHeader;
   localStorage.setItem("list-title", newHeader);
-  document.querySelector(".sidebar-header").removeChild(headerForm);
 };
 
 const createHeaderForm = () => {
@@ -163,10 +162,17 @@ const createHeaderForm = () => {
 
   headerName.focus();
 
+  const sidebarHeader = document.querySelector(".sidebar-header");
+  const listHeader = document.querySelector(".todo-list-header");
+
+  listHeader.setAttribute("style", "display: none");
+
   headerForm.addEventListener(
     "blur",
-    (e) => {
-      document.querySelector(".sidebar-header").removeChild(headerForm);
+    () => {
+      sidebarHeader.contains(headerForm) &&
+        sidebarHeader.removeChild(headerForm);
+      listHeader.removeAttribute("style");
     },
     true
   );
@@ -174,15 +180,20 @@ const createHeaderForm = () => {
   headerForm.addEventListener("submit", (e) => {
     e.preventDefault();
     parseHeaderFormSubmit(headerForm);
+    listHeader.removeAttribute("style");
+    try {
+      if (sidebarHeader.contains(headerForm)) {
+        sidebarHeader.removeChild(headerForm);
+      }
+    } catch (e) {}
   });
 };
 
 const changeHeaderTitle = () => {
   const pencil = document.querySelector(".pencil");
+
   pencil.addEventListener("click", (e) => {
-    document.querySelector(".todo-list-title").classList.toggle("hide");
     createHeaderForm();
-    document.querySelector(".todo-list-title").classList.toggle("hide");
   });
 };
 
