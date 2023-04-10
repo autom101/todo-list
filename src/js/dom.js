@@ -10,16 +10,25 @@ const createSidebarHeader = () => {
   const sidebarHeader = document.createElement("header");
   sidebarHeader.classList.add("sidebar-header");
 
+  const todoListHeader = document.createElement("div");
+  todoListHeader.classList.add("todo-list-header");
+
   const sidebarHeading = document.createElement("h1");
   sidebarHeading.textContent = "My Todo List";
-  sidebarHeading.setAttribute("contenteditable", true);
+  sidebarHeading.classList.add("todo-list-title");
+
+  if (localStorage.getItem("list-title") != null) {
+    sidebarHeading.textContent = localStorage.getItem("list-title");
+  }
 
   const sidebarPencil = document.createElement("img");
   sidebarPencil.classList.add("pencil");
   sidebarPencil.src = pencil;
 
-  sidebarHeader.appendChild(sidebarHeading);
-  sidebarHeader.appendChild(sidebarPencil);
+  todoListHeader.appendChild(sidebarHeading);
+  todoListHeader.appendChild(sidebarPencil);
+
+  sidebarHeader.appendChild(todoListHeader);
 
   return sidebarHeader;
 };

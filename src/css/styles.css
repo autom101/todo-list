@@ -38,22 +38,91 @@ body {
 }
 
 .sidebar-header {
+  width: 100%;
+  height: 20%;
+  position: relative;
+}
+
+.header-form {
+  position: absolute;
+  top: 5%;
+
+  height: 100%;
+  width: 100%;
+
+  background: linear-gradient(to bottom right, #0284c7, #0ea5e9);
+
+  border: 1px solid none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+#header-name {
+  width: 100%;
+  height: 25%;
+
+  margin-top: 3rem;
+
+  background: linear-gradient(to bottom right, #86efac, #34d399, #2dd4bf);
+  border: 1px solid #ce96a6;
+  border-radius: 6px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px rgba(255, 255, 255, 0.2);
+
+  outline: none;
+
+  font-size: 1.3rem;
+  font-family: "Alkatra", cursive;
+  color: snow;
+}
+
+#header-name:hover {
+  cursor: text;
+}
+
+.todo-title-button {
+  width: 50%;
+  height: 25%;
+
+  background: linear-gradient(to bottom right, #f5d0fe, #fb7185, #d8b4fe);
+
+  border: 1px solid #ce96a6;
+  border-radius: 7px;
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+
+  font-size: 1.5rem;
+  font-family: "Alkatra", cursive;
+  color: snow;
+}
+
+.todo-title-button:hover {
+  cursor: pointer;
+}
+
+.todo-list-header {
+  height: 30%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ffffff80;
+  align-items: end;
 }
 
-.sidebar-header h1 {
+.todo-list-header h1 {
   text-align: center;
   font-size: 32px;
   font-weight: 800;
-
-  margin-top: 1rem;
 }
 
 .pencil {
   height: 2.5rem;
-  align-self: end;
 }
 
 .pencil:hover,
@@ -65,7 +134,7 @@ body {
 }
 
 .sidebar-main {
-  margin-top: 10rem;
+  margin-top: 2rem;
   font-size: 32px;
 
   display: flex;

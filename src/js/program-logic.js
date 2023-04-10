@@ -1,7 +1,7 @@
 /*
   This module handles program logic such as event listeners, and other functions 
 */
-
+const body = document.querySelector("body");
 let currentView = {};
 let My_Projects;
 //Shows all todos inside a specific project to the user
@@ -76,7 +76,6 @@ const strikethroughTodoDom = (todoDom, newTodo) => {
     strikethroughTodo(todoDom);
     newTodo.isCrossed = true;
   }
-  console.log(My_Projects);
   localStorage.removeItem("My_Projects");
   localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
 };
@@ -97,7 +96,7 @@ const createTodoInDom = (content, newTodo) => {
 };
 
 // Gets form data whenever users presss submit or hit enter and creates a new todo with that information then inserts it into the document
-const handleFormSubmit = (todoForm, createToDo, index) => {
+const parseTodoFormSubmit = (todoForm, createToDo, index) => {
   const formData = new FormData(todoForm);
   const todoTitle = formData.get("todo-title");
   const newTodo = createToDo(todoTitle);
@@ -119,15 +118,60 @@ const createTodoSubmitListener = (createToDo) => {
 
   todoForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleFormSubmit(todoForm, createToDo, index);
+    parseTodoFormSubmit(todoForm, createToDo, index);
     todoForm.reset();
     My_Projects && index++;
+  });
+};
+
+const parseHeaderFormSubmit = (headerForm) => {
+  const headerData = new FormData(headerForm);
+  const currentHeader = document.querySelector(".todo-list-title");
+  const newHeader = headerData.get("header-name");
+
+  currentHeader.textContent = newHeader;
+  localStorage.setItem("list-title", newHeader);
+  document.querySelector(".sidebar-header").removeChild(headerForm);
+};
+
+const createHeaderForm = () => {
+  const headerForm = document.createElement("form");
+  headerForm.classList.add("header-form");
+  headerForm.setAttribute("action", "#");
+  headerForm.setAttribute("method", "post");
+
+  const headerName = document.createElement("input");
+  headerName.setAttribute("id", "header-name");
+  headerName.setAttribute("name", "header-name");
+  headerName.setAttribute("type", "text");
+  headerName.setAttribute("maxLength", 20);
+
+  const headerNameButton = document.createElement("button");
+  headerNameButton.textContent = "Submit";
+  headerNameButton.setAttribute("type", "submit");
+  headerNameButton.classList.add("todo-title-button");
+
+  headerForm.appendChild(headerName);
+  headerForm.appendChild(headerNameButton);
+  document.querySelector(".sidebar-header").appendChild(headerForm);
+
+  headerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    parseHeaderFormSubmit(headerForm);
+  });
+};
+
+const changeHeaderTitle = () => {
+  const pencil = document.querySelector(".pencil");
+  pencil.addEventListener("click", (e) => {
+    createHeaderForm();
   });
 };
 
 const createLogic = (projectsContainer, createProject, createToDo, index) => {
   createProjectTitleListener(createProject, index);
   createTodoSubmitListener(createToDo);
+  changeHeaderTitle();
   My_Projects = projectsContainer;
 };
 
