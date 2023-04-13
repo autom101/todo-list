@@ -183,6 +183,11 @@ img.plus {
   display: none; /* for Chrome, Safari, and Opera */
 }
 
+.project-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .project-title {
   transition: 0.3s ease;
 }
@@ -249,14 +254,14 @@ img.plus {
   letter-spacing: 1px;
 }
 
-.to-do img {
+img.cog {
   margin-left: auto;
   height: 20px;
   width: auto;
   transition: 0.25s ease;
 }
 
-.to-do img:hover {
+.cog:hover {
   opacity: 0.9;
   scale: 1.15;
   cursor: pointer;
