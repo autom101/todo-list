@@ -1,7 +1,8 @@
 /*
   This module handles program logic such as event listeners, and other functions 
 */
-const body = document.querySelector("body");
+import { format } from "date-fns";
+
 let currentView = {};
 let My_Projects;
 //Shows all todos inside a specific project to the user
@@ -13,7 +14,11 @@ const showProjectTodos = (project) => {
     if (project[todo].title) {
       index++;
       setTimeout(() => {
-        let todoTitle = createTodoInDom(project[todo].title, project[todo]);
+        let todoTitle = createTodoInDom(
+          project[todo].title,
+          project[todo].dateCreated,
+          project[todo]
+        );
         project[todo].isCrossed && strikethroughTodo(todoTitle);
 
         todoList.appendChild(todoTitle);
@@ -87,10 +92,20 @@ const strikethroughListener = (todoTitle, newTodo) => {
   });
 };
 
-const createTodoInDom = (content, newTodo) => {
+const createTodoInDom = (content, date, newTodo) => {
   const todoDom = document.createElement("li");
-  todoDom.textContent = content;
+  const todoText = document.createElement("p");
+  const todoDate = document.createElement("span");
+  todoText.textContent = content;
+  try {
+    todoDate.textContent = `Created: ${format(date, "EE MMM do, yyyy")}`;
+  } catch (e) {
+    console.log(e);
+  }
+
   todoDom.classList.add("to-do");
+  todoDom.appendChild(todoText);
+  todoDom.appendChild(todoDate);
   strikethroughListener(todoDom, newTodo);
   return todoDom;
 };
@@ -98,12 +113,13 @@ const createTodoInDom = (content, newTodo) => {
 // Gets form data whenever users presss submit or hit enter and creates a new todo with that information then inserts it into the document
 const parseTodoFormSubmit = (todoForm, createToDo, index) => {
   const formData = new FormData(todoForm);
+  const todoDateCreated = Date.now();
   const todoTitle = formData.get("todo-title");
-  const newTodo = createToDo(todoTitle);
+
+  const newTodo = createToDo(todoTitle, todoDateCreated);
 
   currentView[`new-todo-${index}`] = newTodo;
-  const todoDom = createTodoInDom(todoTitle, newTodo);
-  todoDom.textContent = todoTitle;
+  const todoDom = createTodoInDom(todoTitle, todoDateCreated, newTodo);
 
   const todoList = document.querySelector(".todo-list");
   todoList.insertAdjacentElement("beforeend", todoDom);

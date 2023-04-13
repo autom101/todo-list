@@ -232,6 +232,12 @@ img.plus {
 
 .to-do {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.to-do span {
+  font-size: 70%;
 }
 
 .crossed {
