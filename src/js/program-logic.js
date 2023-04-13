@@ -2,6 +2,7 @@
   This module handles program logic such as event listeners, and other functions 
 */
 import { format } from "date-fns";
+import cog from "../img/todo-images/cog.svg";
 
 let currentView = {};
 let My_Projects;
@@ -96,6 +97,8 @@ const createTodoInDom = (content, date, newTodo) => {
   const todoDom = document.createElement("li");
   const todoText = document.createElement("p");
   const todoDate = document.createElement("span");
+  const changeTodo = document.createElement("img");
+
   todoText.textContent = content;
   try {
     todoDate.textContent = `Created: ${format(date, "EE MMM do, yyyy")}`;
@@ -103,9 +106,12 @@ const createTodoInDom = (content, date, newTodo) => {
     console.log(e);
   }
 
+  changeTodo.src = cog;
+
   todoDom.classList.add("to-do");
   todoDom.appendChild(todoText);
   todoDom.appendChild(todoDate);
+  todoDom.appendChild(changeTodo);
   strikethroughListener(todoDom, newTodo);
   return todoDom;
 };

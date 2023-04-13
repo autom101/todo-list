@@ -233,11 +233,37 @@ img.plus {
 .to-do {
   position: relative;
   display: flex;
-  justify-content: space-between;
+}
+
+.to-do p:hover,
+.to-do span:hover {
+  text-decoration: underline;
 }
 
 .to-do span {
+  margin-left: auto;
+  display: none;
   font-size: 70%;
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.to-do img {
+  margin-left: auto;
+  height: 20px;
+  width: auto;
+  transition: 0.25s ease;
+}
+
+.to-do img:hover {
+  opacity: 0.9;
+  scale: 1.15;
+  cursor: pointer;
+}
+
+.to-do:hover span {
+  display: inline;
 }
 
 .crossed {
