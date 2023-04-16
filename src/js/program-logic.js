@@ -3,6 +3,8 @@
 */
 import { format } from "date-fns";
 import cog from "../img/todo-images/cog.svg";
+import checkmarkIcon from "../img/todo-images/check.svg";
+// import deleteIcon from "../img/todo-images/alpha-x.svg";
 
 let currentView = {};
 let My_Projects;
@@ -76,22 +78,47 @@ const createProjectTitleListener = (createProject, index) => {
   });
 };
 
-const strikethroughTodo = (todoDom) => {
+const strikethroughTodo = (
+  todoDom,
+  circle = todoDom.querySelector(".circle"),
+  todoCog = todoDom.querySelector(".cog")
+) => {
+  const checkmark = document.createElement("img");
+  checkmark.src = checkmarkIcon;
+  checkmark.classList.add("check-mark");
+
+  const deleteTodo = document.createElement("p");
+  deleteTodo.textContent = "X";
+  deleteTodo.classList.add("delete-icon");
+
   const strikethroughDiv = document.createElement("div");
   strikethroughDiv.classList.add("strikethrough-todo");
   todoDom.classList.toggle("crossed");
+
+  todoDom.removeChild(todoCog);
+
+  circle.appendChild(checkmark);
   todoDom.appendChild(strikethroughDiv);
+  todoDom.appendChild(deleteTodo);
 };
 
 //Strikes through or removes strikethrough from an existing todo
-const strikethroughTodoDom = (todoDom, newTodo) => {
+const strikethroughTodoDom = (todoDom, newTodo, circle, todoCog) => {
   if (newTodo.isCrossed) {
     const strikethroughDiv = document.querySelector(".strikethrough-todo");
+
     todoDom.classList.toggle("crossed");
+
+    circle.removeChild(todoDom.querySelector(".check-mark"));
     todoDom.removeChild(strikethroughDiv);
+    todoDom.removeChild(todoDom.querySelector(".delete-icon"));
+
+    todoDom.appendChild(todoCog);
+
     newTodo.isCrossed = false;
   } else {
-    strikethroughTodo(todoDom);
+    strikethroughTodo(todoDom, circle, todoCog);
+
     newTodo.isCrossed = true;
   }
   localStorage.removeItem("My_Projects");
@@ -99,14 +126,15 @@ const strikethroughTodoDom = (todoDom, newTodo) => {
 };
 
 // Creates an event listener to "strikethrough" or "cross out" a to-do when a user clicks on it
-const strikethroughListener = (todoTitle, newTodo) => {
+const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
   todoTitle.addEventListener("click", () => {
-    strikethroughTodoDom(todoTitle, newTodo);
+    strikethroughTodoDom(todoTitle, newTodo, circle, todoCog);
   });
 };
 
 const createTodoInDom = (content, date, newTodo) => {
   const todoDom = document.createElement("li");
+  const circle = document.createElement("div");
   const todoText = document.createElement("p");
   const todoDate = document.createElement("span");
   const changeTodo = document.createElement("img");
@@ -118,14 +146,17 @@ const createTodoInDom = (content, date, newTodo) => {
     console.log(e);
   }
 
+  circle.classList.add("circle");
+
   changeTodo.src = cog;
   changeTodo.classList.add("cog");
 
   todoDom.classList.add("to-do");
+  todoDom.appendChild(circle);
   todoDom.appendChild(todoText);
   todoDom.appendChild(todoDate);
   todoDom.appendChild(changeTodo);
-  strikethroughListener(todoDom, newTodo);
+  strikethroughListener(todoDom, newTodo, circle, changeTodo);
   return todoDom;
 };
 

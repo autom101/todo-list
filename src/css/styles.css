@@ -238,11 +238,48 @@ img.plus {
 .to-do {
   position: relative;
   display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.circle {
+  margin-left: 1%;
+  height: 100%;
+  width: 3%;
+  border: 1px solid #fff;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle:hover,
+.check-mark:hover,
+.to-do p.delete-icon:hover {
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.check-mark {
+  height: 80%;
+  width: auto;
+}
+
+.delete-icon {
+  font-size: 100%;
+  margin-left: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 1000;
+  margin-right: 0.15rem;
+
+  padding: 0;
 }
 
 .to-do p:hover,
 .to-do span:hover {
-  text-decoration: underline;
+  cursor: text;
 }
 
 .to-do span {
@@ -278,10 +315,11 @@ img.cog {
 
 .strikethrough-todo {
   position: absolute;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #fff;
   top: 37%;
-  width: 100%;
+  width: calc(96% - 1rem);
   height: 2px;
+  left: calc(4% + 1rem);
 }
 
 .todo-form {
