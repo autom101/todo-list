@@ -238,6 +238,7 @@ img.plus {
 .to-do {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
 }
@@ -249,9 +250,7 @@ img.plus {
   border: 1px solid #fff;
   border-radius: 50%;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
 .circle:hover,
@@ -262,19 +261,20 @@ img.plus {
 }
 
 .check-mark {
+  position: absolute;
+  top: 10%;
+  left: 20%;
   height: 80%;
   width: auto;
 }
 
 .delete-icon {
-  font-size: 100%;
+  font-size: 80%;
   margin-left: auto;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 1000;
-  margin-right: 0.15rem;
-
-  padding: 0;
+  margin-right: 0.2rem;
 }
 
 .to-do p:hover,
@@ -316,10 +316,11 @@ img.cog {
 .strikethrough-todo {
   position: absolute;
   border-bottom: 2px solid #fff;
-  top: 37%;
-  width: calc(96% - 1rem);
+  top: 42%;
+  width: calc(92% - 2rem);
   height: 2px;
   left: calc(4% + 1rem);
+  right: calc(4% + 1rem);
 }
 
 .todo-form {
