@@ -1,10 +1,11 @@
 const createToDo = (
   title,
-  dateCreated = "none",
+  designation,
+  dateCreated,
   priority = "none",
   isCrossed = false
 ) => {
-  return { title, dateCreated, priority, isCrossed };
+  return { title, designation, dateCreated, priority, isCrossed };
 };
 
 export { createToDo };

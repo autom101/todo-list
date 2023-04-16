@@ -78,8 +78,18 @@ const createProjectTitleListener = (createProject, index) => {
   });
 };
 
+const deleteTodoListener = (todoDom, deleteTodo, currentTodo) => {
+  deleteTodo.addEventListener("click", () => {
+    document.querySelector(".todo-list").removeChild(todoDom);
+    delete currentView[currentTodo.designation];
+    localStorage.removeItem("My_Projects");
+    localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
+  });
+};
+
 const strikethroughTodo = (
   todoDom,
+  currentTodo,
   circle = todoDom.querySelector(".circle"),
   todoCog = todoDom.querySelector(".cog")
 ) => {
@@ -90,6 +100,8 @@ const strikethroughTodo = (
   const deleteTodo = document.createElement("p");
   deleteTodo.textContent = "X";
   deleteTodo.classList.add("delete-icon");
+
+  deleteTodoListener(todoDom, deleteTodo, currentTodo);
 
   const strikethroughDiv = document.createElement("div");
   strikethroughDiv.classList.add("strikethrough-todo");
@@ -117,7 +129,7 @@ const strikethroughTodoDom = (todoDom, newTodo, circle, todoCog) => {
 
     newTodo.isCrossed = false;
   } else {
-    strikethroughTodo(todoDom, circle, todoCog);
+    strikethroughTodo(todoDom, newTodo, circle, todoCog);
 
     newTodo.isCrossed = true;
   }
@@ -127,7 +139,7 @@ const strikethroughTodoDom = (todoDom, newTodo, circle, todoCog) => {
 
 // Creates an event listener to "strikethrough" or "cross out" a to-do when a user clicks on it
 const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
-  todoTitle.addEventListener("click", () => {
+  circle.addEventListener("click", () => {
     strikethroughTodoDom(todoTitle, newTodo, circle, todoCog);
   });
 };
@@ -166,9 +178,11 @@ const parseTodoFormSubmit = (todoForm, createToDo) => {
   const todoDateCreated = Date.now();
   const todoTitle = formData.get("todo-title");
 
-  const newTodo = createToDo(todoTitle, todoDateCreated);
+  const todoDesignation = `new-todo` + Object.keys(currentView).length;
 
-  currentView[`new-todo` + Object.keys(currentView).length] = newTodo;
+  const newTodo = createToDo(todoTitle, todoDesignation, todoDateCreated);
+
+  currentView[todoDesignation] = newTodo;
   const todoDom = createTodoInDom(todoTitle, todoDateCreated, newTodo);
 
   const todoList = document.querySelector(".todo-list");
