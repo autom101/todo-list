@@ -140,6 +140,87 @@ const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
   });
 };
 
+const modifyTodoDom = () => {
+  //
+};
+
+const modifyTodoObject = () => {
+  //
+};
+
+const displayTodoInformation = (todoItem) => {
+  const todoContainer = document.querySelector(".todo-container");
+
+  const todoInfo = document.createElement("section");
+  todoInfo.classList.add("todo-info");
+
+  const todoInfoTitle = document.createElement("h2");
+  todoInfoTitle.textContent = "Todo Information";
+
+  const todoNameInfoRow = document.createElement("div");
+  const todoDateCreatedInfoRow = document.createElement("div");
+  const todoPriorityInfoRow = document.createElement("div");
+  const todoDateDueInfoRow = document.createElement("div");
+
+  const todoNameInfoTitle = document.createElement("h3");
+  todoNameInfoTitle.textContent = "Todo Content:";
+  const todoNameInfo = document.createElement("p");
+  todoNameInfo.textContent = todoItem.title;
+
+  todoNameInfoRow.appendChild(todoNameInfoTitle);
+  todoNameInfoRow.appendChild(todoNameInfo);
+
+  const todoDateCreatedInfoTitle = document.createElement("h3");
+  todoDateCreatedInfoTitle.textContent = "Date Created:";
+  const todoDateCreatedInfo = document.createElement("p");
+  todoDateCreatedInfo.textContent = format(
+    todoItem.dateCreated,
+    "cccc MMM dd, yyyy"
+  );
+
+  todoDateCreatedInfoRow.appendChild(todoDateCreatedInfoTitle);
+  todoDateCreatedInfoRow.appendChild(todoDateCreatedInfo);
+
+  const todoPriorityInfoTitle = document.createElement("h3");
+  todoPriorityInfoTitle.textContent = "Priority:";
+  const todoPriorityInfo = document.createElement("p");
+  todoPriorityInfo.textContent = todoItem.priority;
+
+  todoPriorityInfoRow.appendChild(todoPriorityInfoTitle);
+  todoPriorityInfoRow.appendChild(todoPriorityInfo);
+
+  const todoDateDueInfoTitle = document.createElement("h3");
+  todoDateDueInfoTitle.textContent = "Date Due:";
+  const todoDateDueInfo = document.createElement("p");
+  todoDateDueInfo.textContent = todoItem.dateDue;
+
+  todoDateDueInfoRow.appendChild(todoDateDueInfoTitle);
+  todoDateDueInfoRow.appendChild(todoDateDueInfo);
+
+  todoInfo.appendChild(todoInfoTitle);
+  todoInfo.appendChild(todoNameInfoRow);
+  todoInfo.appendChild(todoDateCreatedInfoRow);
+  todoInfo.appendChild(todoPriorityInfoRow);
+  todoInfo.appendChild(todoDateDueInfoRow);
+
+  todoContainer.appendChild(todoInfo);
+};
+
+const createcogEventListener = (cogItem, itemToChange, itemKind) => {
+  if (itemKind == "todo") {
+    cogItem.addEventListener("click", () => {
+      displayTodoInformation(itemToChange);
+      document
+        .querySelector(".todo-main")
+        .setAttribute("style", "width: calc(50% - 4rem);");
+    });
+  } else if (itemKind == "project") {
+    cogItem.addEventListener("click", () => {
+      //
+    });
+  }
+};
+
 //Create the todo element inside the dom along with its options such as the cog and circle
 const createTodoInDom = (content, date, newTodo) => {
   const todoDom = document.createElement("li");
@@ -159,6 +240,7 @@ const createTodoInDom = (content, date, newTodo) => {
 
   changeTodo.src = cog;
   changeTodo.classList.add("cog");
+  createcogEventListener(changeTodo, newTodo, "todo");
 
   todoDom.classList.add("to-do");
   todoDom.appendChild(circle);

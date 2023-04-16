@@ -16,7 +16,7 @@
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createToDo\": () => (/* binding */ createToDo)\n/* harmony export */ });\nconst createToDo = (\n  title,\n  designation,\n  dateCreated,\n  priority = \"none\",\n  isCrossed = false\n) => {\n  return { title, designation, dateCreated, priority, isCrossed };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/to-dos.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createToDo\": () => (/* binding */ createToDo)\n/* harmony export */ });\nconst createToDo = (\n  title,\n  designation,\n  dateCreated,\n  priority = \"none\",\n  dateDue = \"none\",\n  isCrossed = false\n) => {\n  return { title, designation, dateCreated, priority, dateDue, isCrossed };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/to-dos.js?");
 
 /***/ })
 
