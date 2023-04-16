@@ -4,10 +4,10 @@
 import { format } from "date-fns";
 import cog from "../img/todo-images/cog.svg";
 import checkmarkIcon from "../img/todo-images/check.svg";
-// import deleteIcon from "../img/todo-images/alpha-x.svg";
 
 let currentView = {};
 let My_Projects;
+
 //Shows all todos inside a specific project to the user
 const showProjectTodos = (project) => {
   const todoList = document.querySelector(".todo-list");
@@ -30,7 +30,7 @@ const showProjectTodos = (project) => {
   }
 };
 
-//Calls showProjectTodos everytime a project's title is clicked on the sidebar
+// Calls showProjectTodos everytime a project's title is clicked on the sidebar
 const displayProjectTodos = (currentProject, index) => {
   const project = document.querySelector(`.project-${index}`);
   if (document.body.contains(project)) {
@@ -41,7 +41,7 @@ const displayProjectTodos = (currentProject, index) => {
   }
 };
 
-//Add project title to projects list on sidebar
+//Add project title to projects list on sidebar and a "cog" next to it
 const addToProjectsList = (newProject, index) => {
   const sidebarMain = document.querySelector(".project-list");
   const projectTitle = document.createElement("div");
@@ -78,6 +78,7 @@ const createProjectTitleListener = (createProject, index) => {
   });
 };
 
+// When the 'X' is clicked, it deletes the todo from the dom and the project object itself. Also, it updates the local storage with those changes
 const deleteTodoListener = (todoDom, deleteTodo, currentTodo) => {
   deleteTodo.addEventListener("click", () => {
     document.querySelector(".todo-list").removeChild(todoDom);
@@ -87,6 +88,7 @@ const deleteTodoListener = (todoDom, deleteTodo, currentTodo) => {
   });
 };
 
+// Adds a line on the middle of the todo in dom, and also creates an 'X' at the end of the todo
 const strikethroughTodo = (
   todoDom,
   currentTodo,
@@ -103,26 +105,20 @@ const strikethroughTodo = (
 
   deleteTodoListener(todoDom, deleteTodo, currentTodo);
 
-  const strikethroughDiv = document.createElement("div");
-  strikethroughDiv.classList.add("strikethrough-todo");
-  todoDom.classList.toggle("crossed");
+  todoDom.querySelector("p").classList.toggle("crossed");
 
   todoDom.removeChild(todoCog);
 
   circle.appendChild(checkmark);
-  todoDom.appendChild(strikethroughDiv);
   todoDom.appendChild(deleteTodo);
 };
 
 //Strikes through or removes strikethrough from an existing todo
 const strikethroughTodoDom = (todoDom, newTodo, circle, todoCog) => {
   if (newTodo.isCrossed) {
-    const strikethroughDiv = document.querySelector(".strikethrough-todo");
-
-    todoDom.classList.toggle("crossed");
+    todoDom.querySelector("p").classList.toggle("crossed");
 
     circle.removeChild(todoDom.querySelector(".check-mark"));
-    todoDom.removeChild(strikethroughDiv);
     todoDom.removeChild(todoDom.querySelector(".delete-icon"));
 
     todoDom.appendChild(todoCog);
@@ -144,6 +140,7 @@ const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
   });
 };
 
+//Create the todo element inside the dom along with its options such as the cog and circle
 const createTodoInDom = (content, date, newTodo) => {
   const todoDom = document.createElement("li");
   const circle = document.createElement("div");
@@ -221,21 +218,21 @@ const createHeaderForm = () => {
   headerName.setAttribute("id", "header-name");
   headerName.setAttribute("name", "header-name");
   headerName.setAttribute("type", "text");
-  headerName.setAttribute("maxLength", 20);
+  headerName.setAttribute("maxLength", 30);
 
   const headerNameLabel = document.createElement("label");
   headerNameLabel.setAttribute("for", "header-name");
   headerNameLabel.classList.add("header-name-label");
   headerNameLabel.textContent = "New Todo List Title";
 
-  const headerNameButton = document.createElement("button");
-  headerNameButton.textContent = "Submit";
-  headerNameButton.setAttribute("type", "submit");
-  headerNameButton.classList.add("todo-title-button");
+  // const headerNameButton = document.createElement("button");
+  // headerNameButton.textContent = "Submit";
+  // headerNameButton.setAttribute("type", "submit");
+  // headerNameButton.classList.add("todo-title-button");
 
   headerForm.appendChild(headerNameLabel);
   headerForm.appendChild(headerName);
-  headerForm.appendChild(headerNameButton);
+  // headerForm.appendChild(headerNameButton);
   document.querySelector(".sidebar-header").appendChild(headerForm);
 
   headerName.focus();

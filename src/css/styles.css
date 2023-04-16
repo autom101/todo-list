@@ -3,7 +3,6 @@
 * {
   box-sizing: border-box;
   cursor: default;
-  user-select: none;
 }
 
 body {
@@ -19,7 +18,14 @@ body {
   color: #fff;
   display: flex;
 }
+/* 
 
+
+Sidebar Styling
+
+
+
+*/
 .sidebar {
   background: linear-gradient(to bottom right, #0284c7, #0ea5e9);
 
@@ -200,6 +206,16 @@ img.plus {
   content: "-> ";
 }
 
+/* 
+
+
+
+Todo Display styling
+
+
+
+*/
+
 .todo-main {
   background: linear-gradient(to bottom right, #0284c7, #0ea5e9, #38bdf8);
 
@@ -238,24 +254,26 @@ img.plus {
 .to-do {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
+  user-select: auto;
 }
 
 .circle {
   margin-left: 1%;
-  height: 100%;
-  width: 3%;
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
   border: 1px solid #fff;
   border-radius: 50%;
 
   position: relative;
+
+  align-self: start;
 }
 
 .circle:hover,
-.check-mark:hover,
-.to-do p.delete-icon:hover {
+.check-mark:hover {
   cursor: pointer;
   scale: 1.05;
 }
@@ -263,18 +281,21 @@ img.plus {
 .check-mark {
   position: absolute;
   top: 10%;
-  left: 20%;
+  left: 15%;
   height: 80%;
   width: auto;
 }
 
-.delete-icon {
-  font-size: 80%;
-  margin-left: auto;
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 1000;
-  margin-right: 0.2rem;
+.to-do p {
+  word-break: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.to-do p:hover {
+  overflow: visible;
+  white-space: normal;
 }
 
 .to-do p:hover,
@@ -291,36 +312,40 @@ img.plus {
   letter-spacing: 1px;
 }
 
+/* 
+.to-do:hover span {
+  display: inline;
+} */
+
 img.cog {
   margin-left: auto;
   height: 20px;
   width: auto;
   transition: 0.25s ease;
+  align-self: start;
 }
 
-.cog:hover {
+.cog:hover,
+.to-do p.delete-icon:hover {
   opacity: 0.9;
   scale: 1.15;
   cursor: pointer;
 }
 
-.to-do:hover span {
-  display: inline;
+.to-do .delete-icon {
+  font-size: 80%;
+  margin-left: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 1000;
+  margin-right: 0.35rem;
+
+  align-self: start;
 }
 
 .crossed {
-  font-style: italic;
+  text-decoration: line-through;
   color: #cbd5e1;
-}
-
-.strikethrough-todo {
-  position: absolute;
-  border-bottom: 2px solid #fff;
-  top: 42%;
-  width: calc(92% - 2rem);
-  height: 2px;
-  left: calc(4% + 1rem);
-  right: calc(4% + 1rem);
 }
 
 .todo-form {
