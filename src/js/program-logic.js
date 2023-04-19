@@ -243,8 +243,104 @@ const modifyTodoDom = () => {
   //
 };
 
-const modifyTodoObject = () => {
-  //
+const modifyTodoObject = (todoItem) => {
+  const todoInfoBottom = document.createElement("div");
+  todoInfoBottom.classList.add("item-info-bottom");
+
+  const changeTodoTitle = document.createElement("h2");
+  changeTodoTitle.textContent = "Change Todo";
+
+  const FORMROWS = 5;
+  // change todo form
+  const changeTodoForm = document.createElement("form");
+  changeTodoForm.setAttribute("Action", "#");
+  changeTodoForm.setAttribute("Method", "Post");
+
+  // todo name
+  const newTodoNameLabel = document.createElement("label");
+  newTodoNameLabel.textContent = "New Todo Content:";
+  newTodoNameLabel.setAttribute("for", "todo-name");
+
+  const newTodoNameInput = document.createElement("input");
+  newTodoNameInput.setAttribute("name", "todo-name");
+  newTodoNameInput.setAttribute("id", "todo-name");
+  newTodoNameInput.setAttribute("type", "text");
+  newTodoNameInput.setAttribute("maxLength", "70");
+
+  // todo priority
+  const newtodoPriorityLabel = document.createElement("label");
+  newtodoPriorityLabel.textContent = "New Todo Priority:";
+  newtodoPriorityLabel.setAttribute("for", "todo-priority");
+
+  const newtodoPriority = document.createElement("select");
+  newtodoPriority.setAttribute("name", "todo-priority");
+  newtodoPriority.setAttribute("id", "todo-priority");
+
+  // priority select options
+  const newtodoPriorityEmptyOption = document.createElement("option");
+  newtodoPriorityEmptyOption.setAttribute("value", "");
+  newtodoPriorityEmptyOption.textContent = "~Pick an option below~";
+  const newtodoPriorityRed = document.createElement("option");
+  newtodoPriorityRed.setAttribute("value", "red");
+  const newtodoPriorityYellow = document.createElement("option");
+  newtodoPriorityYellow.setAttribute("value", "yellow");
+  const newtodoPriorityGreen = document.createElement("option");
+  newtodoPriorityGreen.setAttribute("value", "green");
+
+  newtodoPriority.appendChild(newtodoPriorityEmptyOption);
+  newtodoPriority.appendChild(newtodoPriorityRed);
+  newtodoPriority.appendChild(newtodoPriorityYellow);
+  newtodoPriority.appendChild(newtodoPriorityGreen);
+
+  // todo date due
+  const newTodoDateLabel = document.createElement("label");
+  newTodoDateLabel.textContent = "Date Due:";
+  newTodoDateLabel.setAttribute("for", "todo-date");
+
+  const newTodoDateInput = document.createElement("input");
+  newTodoDateInput.setAttribute("id", "todo-date");
+  newTodoDateInput.setAttribute("name", "todo-date");
+  newTodoDateInput.setAttribute("type", "date");
+
+  // todo description
+  const newTodoDescriptionLabel = document.createElement("label");
+  newTodoDescriptionLabel.textContent = "Todo Description:";
+  newTodoDescriptionLabel.setAttribute("for", "todo-description");
+
+  const newTodoDescriptionInput = document.createElement("textarea");
+  newTodoDescriptionInput.setAttribute("id", "todo-description");
+  newTodoDescriptionInput.setAttribute("name", "todo-description");
+
+  const changeTodoSubmitButton = document.createElement("button");
+  changeTodoSubmitButton.setAttribute("type", "submit");
+  changeTodoSubmitButton.classList.add("change-todo-button");
+  changeTodoSubmitButton.textContent = "Submit";
+
+  // todo form rows
+  const changeTodoFormDivs = [];
+
+  for (let i = 0; i < FORMROWS; i++) {
+    changeTodoFormDivs[i] = document.createElement("div");
+  }
+
+  changeTodoFormDivs[0].appendChild(newTodoNameLabel);
+  changeTodoFormDivs[0].appendChild(newTodoNameInput);
+  changeTodoFormDivs[1].appendChild(newtodoPriorityLabel);
+  changeTodoFormDivs[1].appendChild(newtodoPriority);
+  changeTodoFormDivs[2].appendChild(newTodoDateLabel);
+  changeTodoFormDivs[2].appendChild(newTodoDateInput);
+  changeTodoFormDivs[3].appendChild(newTodoDescriptionLabel);
+  changeTodoFormDivs[3].appendChild(newTodoDescriptionInput);
+  changeTodoFormDivs[4].appendChild(changeTodoSubmitButton);
+
+  for (let i = 0; i < FORMROWS; i++) {
+    changeTodoForm.appendChild(changeTodoFormDivs[i]);
+  }
+
+  todoInfoBottom.appendChild(changeTodoTitle);
+  todoInfoBottom.appendChild(changeTodoForm);
+
+  return todoInfoBottom;
 };
 
 //Displays information about todo to the user including its content (name), date created, date due, and priority
@@ -253,6 +349,9 @@ const displayTodoInfo = (todoItem) => {
 
   const todoInfo = document.createElement("section");
   todoInfo.classList.add("item-info");
+
+  const todoInfoTop = document.createElement("div");
+  todoInfoTop.classList.add("item-info-top");
 
   const todoInfoTitle = document.createElement("h2");
   todoInfoTitle.textContent = "Todo Information";
@@ -301,12 +400,15 @@ const displayTodoInfo = (todoItem) => {
   todoDateDueInfoRow.appendChild(todoDateDueInfoTitle);
   todoDateDueInfoRow.appendChild(todoDateDueInfo);
 
-  todoInfo.appendChild(todoInfoTitle);
-  todoInfo.appendChild(todoNameInfoRow);
-  todoInfo.appendChild(todoDateCreatedInfoRow);
-  todoInfo.appendChild(todoPriorityInfoRow);
-  todoInfo.appendChild(todoDateDueInfoRow);
+  todoInfoTop.appendChild(todoInfoTitle);
+  todoInfoTop.appendChild(todoNameInfoRow);
+  todoInfoTop.appendChild(todoDateCreatedInfoRow);
+  todoInfoTop.appendChild(todoPriorityInfoRow);
+  todoInfoTop.appendChild(todoDateDueInfoRow);
+
+  todoInfo.appendChild(todoInfoTop);
   todoInfo.appendChild(todoInfoDelete);
+  todoInfo.appendChild(modifyTodoObject(todoInfo, todoItem));
 
   todoContainer.appendChild(todoInfo);
 
