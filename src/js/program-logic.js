@@ -4,9 +4,11 @@
 import { format } from "date-fns";
 import cog from "../img/todo-images/cog.svg";
 import checkmarkIcon from "../img/todo-images/check.svg";
+import xTodoInfo from "../img/todo-images/close-thick.svg";
 
 let currentView = {};
 let My_Projects;
+let infoBeingShown = false;
 
 //Shows all todos inside a specific project to the user
 const showProjectTodos = (project) => {
@@ -148,6 +150,17 @@ const modifyTodoObject = () => {
   //
 };
 
+const removeTodoInformationListener = (
+  closeTodoIcon,
+  todoContainer,
+  todoInfo
+) => {
+  closeTodoIcon.addEventListener("click", () => {
+    todoContainer.removeChild(todoInfo);
+    infoBeingShown = false;
+  });
+};
+
 const displayTodoInformation = (todoItem) => {
   const todoContainer = document.querySelector(".todo-container");
 
@@ -156,6 +169,10 @@ const displayTodoInformation = (todoItem) => {
 
   const todoInfoTitle = document.createElement("h2");
   todoInfoTitle.textContent = "Todo Information";
+
+  const todoInfoDelete = document.createElement("img");
+  todoInfoDelete.classList.add("todo-info-delete");
+  todoInfoDelete.src = xTodoInfo;
 
   const todoNameInfoRow = document.createElement("div");
   const todoDateCreatedInfoRow = document.createElement("div");
@@ -202,17 +219,23 @@ const displayTodoInformation = (todoItem) => {
   todoInfo.appendChild(todoDateCreatedInfoRow);
   todoInfo.appendChild(todoPriorityInfoRow);
   todoInfo.appendChild(todoDateDueInfoRow);
+  todoInfo.appendChild(todoInfoDelete);
 
   todoContainer.appendChild(todoInfo);
+
+  removeTodoInformationListener(todoInfoDelete, todoContainer, todoInfo);
 };
 
 const createcogEventListener = (cogItem, itemToChange, itemKind) => {
   if (itemKind == "todo") {
     cogItem.addEventListener("click", () => {
-      displayTodoInformation(itemToChange);
-      document
-        .querySelector(".todo-main")
-        .setAttribute("style", "width: calc(50% - 4rem);");
+      if (!infoBeingShown) {
+        document
+          .querySelector(".todo-main")
+          .setAttribute("style", "width: calc(50% - 4rem);");
+        displayTodoInformation(itemToChange);
+        infoBeingShown = true;
+      }
     });
   } else if (itemKind == "project") {
     cogItem.addEventListener("click", () => {
@@ -307,14 +330,8 @@ const createHeaderForm = () => {
   headerNameLabel.classList.add("header-name-label");
   headerNameLabel.textContent = "New Todo List Title";
 
-  // const headerNameButton = document.createElement("button");
-  // headerNameButton.textContent = "Submit";
-  // headerNameButton.setAttribute("type", "submit");
-  // headerNameButton.classList.add("todo-title-button");
-
   headerForm.appendChild(headerNameLabel);
   headerForm.appendChild(headerName);
-  // headerForm.appendChild(headerNameButton);
   document.querySelector(".sidebar-header").appendChild(headerForm);
 
   headerName.focus();
