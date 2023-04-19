@@ -16,7 +16,7 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createProject\": () => (/* binding */ createProject)\n/* harmony export */ });\nconst createProject = (name = \"test\") => {\n  return { name };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/projects.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"createProject\": () => (/* binding */ createProject)\n/* harmony export */ });\nconst createProject = (\n  name = \"test\",\n  dateCreated = new Date(),\n  todosCount = 0,\n  todosCrossedCount = 0\n) => {\n  return { name, dateCreated, todosCount, todosCrossedCount };\n};\n\n\n\n\n//# sourceURL=webpack://todo-list/./src/js/projects.js?");
 
 /***/ })
 

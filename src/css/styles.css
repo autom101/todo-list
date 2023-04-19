@@ -402,7 +402,7 @@ Todo Info Styling
 
 */
 
-.todo-info {
+.item-info {
   background: linear-gradient(to bottom right, #0284c7, #0ea5e9, #38bdf8);
 
   align-self: center;
@@ -423,30 +423,30 @@ Todo Info Styling
   position: relative;
 }
 
-.todo-info h2 {
+.item-info h2 {
   font-size: 32px;
   border-bottom: 1px solid #ffffff80;
   font-weight: 800;
 }
 
-.todo-info h2:hover,
-.todo-info div p:hover {
+.item-info h2:hover,
+.item-info div p:hover {
   cursor: text;
 }
 
-.todo-info div {
+.item-info div {
   display: flex;
   gap: 0.5rem;
   font-size: 28px;
   line-height: 100%;
 }
 
-.todo-info div h3 {
+.item-info div h3 {
   font-weight: 500;
   font-size: 20px;
 }
 
-.todo-info div p {
+.item-info div p {
   width: 60%;
   font-size: 20px;
   word-break: break-word;
@@ -455,12 +455,12 @@ Todo Info Styling
   text-overflow: ellipsis;
 }
 
-.todo-info div p:hover {
+.item-info div p:hover {
   overflow: visible;
   white-space: normal;
 }
 
-.todo-info-delete {
+.info-delete {
   position: absolute;
   height: 1.5rem;
   width: 1.5rem;
@@ -470,7 +470,7 @@ Todo Info Styling
   transition: 0.3s ease;
 }
 
-.todo-info-delete:hover {
+.info-delete:hover {
   scale: 1.05;
   cursor: pointer;
 }

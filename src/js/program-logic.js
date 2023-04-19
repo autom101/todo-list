@@ -43,6 +43,97 @@ const displayProjectTodos = (currentProject, index) => {
   }
 };
 
+const removeInfoBoxListener = (closeIcon, todoContainer, infoBox) => {
+  closeIcon.addEventListener("click", () => {
+    todoContainer.removeChild(infoBox);
+    infoBeingShown = false;
+  });
+};
+
+// Shows information about a project to the user such as the project's title, when it was created, how many todos it has, as well as how many todos a user has crossed out in that project
+const displayProjectInfo = (projectItem) => {
+  const todoContainer = document.querySelector(".todo-container");
+
+  const projectInfo = document.createElement("section");
+  projectInfo.classList.add("item-info");
+  projectInfo.classList.add("project-info");
+
+  const projectInfoTitle = document.createElement("h2");
+  projectInfoTitle.textContent = "Project Information";
+
+  const projectInfoDelete = document.createElement("img");
+  projectInfoDelete.classList.add("info-delete");
+  projectInfoDelete.src = xTodoInfo;
+
+  const projectNameInfoRow = document.createElement("div");
+  const projectDateCreatedInfoRow = document.createElement("div");
+  const projectTodosCountInfoRow = document.createElement("div");
+  const projectTodosCrossedCountInfoRow = document.createElement("div");
+
+  const projectNameInfoTitle = document.createElement("h3");
+  projectNameInfoTitle.textContent = "Project Name:";
+  const projectNameInfo = document.createElement("p");
+  projectNameInfo.textContent = projectItem.name;
+
+  projectNameInfoRow.appendChild(projectNameInfoTitle);
+  projectNameInfoRow.appendChild(projectNameInfo);
+
+  const projectDateCreatedInfoTitle = document.createElement("h3");
+  projectDateCreatedInfoTitle.textContent = "Date Created:";
+  const projectDateCreatedInfo = document.createElement("p");
+  projectDateCreatedInfo.textContent = format(
+    projectItem.dateCreated,
+    "cccc MMM dd, yyyy"
+  );
+
+  projectDateCreatedInfoRow.appendChild(projectDateCreatedInfoTitle);
+  projectDateCreatedInfoRow.appendChild(projectDateCreatedInfo);
+
+  const projectTodosCountInfoTitle = document.createElement("h3");
+  projectTodosCountInfoTitle.textContent = "Todos Count:";
+  const projectTodosCountInfo = document.createElement("p");
+  projectTodosCountInfo.textContent = projectItem.todosCount;
+
+  projectTodosCountInfoRow.appendChild(projectTodosCountInfoTitle);
+  projectTodosCountInfoRow.appendChild(projectTodosCountInfo);
+
+  const projectTodosCrossedCountInfoTitle = document.createElement("h3");
+  projectTodosCrossedCountInfoTitle.textContent = "Todos Finished:";
+  const projectTodosCrossedCountInfo = document.createElement("p");
+  projectTodosCrossedCountInfo.textContent = projectItem.todosCrossedCount;
+
+  projectTodosCrossedCountInfoRow.appendChild(
+    projectTodosCrossedCountInfoTitle
+  );
+  projectTodosCrossedCountInfoRow.appendChild(projectTodosCrossedCountInfo);
+
+  projectInfo.appendChild(projectInfoTitle);
+  projectInfo.appendChild(projectNameInfoRow);
+  projectInfo.appendChild(projectDateCreatedInfoRow);
+  projectInfo.appendChild(projectTodosCountInfoRow);
+  projectInfo.appendChild(projectTodosCrossedCountInfoRow);
+  projectInfo.appendChild(projectInfoDelete);
+
+  todoContainer.appendChild(projectInfo);
+
+  removeInfoBoxListener(projectInfoDelete, todoContainer, projectInfo);
+};
+
+const createcogEventListener = (cogItem, itemToChange, itemKind) => {
+  cogItem.addEventListener("click", () => {
+    if (!infoBeingShown) {
+      document
+        .querySelector(".todo-main")
+        .setAttribute("style", "width: calc(50% - 4rem);");
+      itemKind == "todo"
+        ? displayTodoInfo(itemToChange)
+        : displayProjectInfo(itemToChange);
+
+      infoBeingShown = true;
+    }
+  });
+};
+
 //Add project title to projects list on sidebar and a "cog" next to it
 const addToProjectsList = (newProject, index) => {
   const sidebarMain = document.querySelector(".project-list");
@@ -62,6 +153,8 @@ const addToProjectsList = (newProject, index) => {
   projectTitle.appendChild(newTitle);
   projectTitle.appendChild(changeProjectTitle);
 
+  createcogEventListener(changeProjectTitle, newProject, "Project");
+
   sidebarMain.appendChild(projectTitle);
 
   displayProjectTodos(newProject, index);
@@ -72,11 +165,12 @@ const createProjectTitleListener = (createProject, index) => {
   const addProject = document.querySelector(".plus");
 
   addProject.addEventListener("click", () => {
-    const newProject = createProject(index);
+    const newProject = createProject("Project " + index, Date.now());
     My_Projects["newProject" + index] = newProject;
     addToProjectsList(newProject, index);
-
     index++;
+    localStorage.removeItem("My_Projects");
+    localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
   });
 };
 
@@ -85,6 +179,7 @@ const deleteTodoListener = (todoDom, deleteTodo, currentTodo) => {
   deleteTodo.addEventListener("click", () => {
     document.querySelector(".todo-list").removeChild(todoDom);
     delete currentView[currentTodo.designation];
+    currentView.todosCount--;
     localStorage.removeItem("My_Projects");
     localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
   });
@@ -126,10 +221,12 @@ const strikethroughTodoDom = (todoDom, newTodo, circle, todoCog) => {
     todoDom.appendChild(todoCog);
 
     newTodo.isCrossed = false;
+    currentView.todosCrossedCount--;
   } else {
     strikethroughTodo(todoDom, newTodo, circle, todoCog);
 
     newTodo.isCrossed = true;
+    currentView.todosCrossedCount++;
   }
   localStorage.removeItem("My_Projects");
   localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
@@ -150,28 +247,18 @@ const modifyTodoObject = () => {
   //
 };
 
-const removeTodoInformationListener = (
-  closeTodoIcon,
-  todoContainer,
-  todoInfo
-) => {
-  closeTodoIcon.addEventListener("click", () => {
-    todoContainer.removeChild(todoInfo);
-    infoBeingShown = false;
-  });
-};
-
-const displayTodoInformation = (todoItem) => {
+//Displays information about todo to the user including its content (name), date created, date due, and priority
+const displayTodoInfo = (todoItem) => {
   const todoContainer = document.querySelector(".todo-container");
 
   const todoInfo = document.createElement("section");
-  todoInfo.classList.add("todo-info");
+  todoInfo.classList.add("item-info");
 
   const todoInfoTitle = document.createElement("h2");
   todoInfoTitle.textContent = "Todo Information";
 
   const todoInfoDelete = document.createElement("img");
-  todoInfoDelete.classList.add("todo-info-delete");
+  todoInfoDelete.classList.add("info-delete");
   todoInfoDelete.src = xTodoInfo;
 
   const todoNameInfoRow = document.createElement("div");
@@ -223,25 +310,7 @@ const displayTodoInformation = (todoItem) => {
 
   todoContainer.appendChild(todoInfo);
 
-  removeTodoInformationListener(todoInfoDelete, todoContainer, todoInfo);
-};
-
-const createcogEventListener = (cogItem, itemToChange, itemKind) => {
-  if (itemKind == "todo") {
-    cogItem.addEventListener("click", () => {
-      if (!infoBeingShown) {
-        document
-          .querySelector(".todo-main")
-          .setAttribute("style", "width: calc(50% - 4rem);");
-        displayTodoInformation(itemToChange);
-        infoBeingShown = true;
-      }
-    });
-  } else if (itemKind == "project") {
-    cogItem.addEventListener("click", () => {
-      //
-    });
-  }
+  removeInfoBoxListener(todoInfoDelete, todoContainer, todoInfo);
 };
 
 //Create the todo element inside the dom along with its options such as the cog and circle
@@ -285,6 +354,7 @@ const parseTodoFormSubmit = (todoForm, createToDo) => {
   const newTodo = createToDo(todoTitle, todoDesignation, todoDateCreated);
 
   currentView[todoDesignation] = newTodo;
+  currentView.todosCount++;
   const todoDom = createTodoInDom(todoTitle, todoDateCreated, newTodo);
 
   const todoList = document.querySelector(".todo-list");
