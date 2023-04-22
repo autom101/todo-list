@@ -50,11 +50,120 @@ const removeInfoBoxListener = (closeIcon, todoContainer, infoBox) => {
   });
 };
 
+const modifyProjectDom = (name, description, projectItem) => {
+  if (name) {
+    const projectDomName = document.querySelector(
+      `.${projectItem.designation}`
+    );
+    projectDomName.textContent = name;
+
+    const projectDomInfoName = document.querySelector(".project-name-info");
+    projectDomInfoName.textContent = name;
+  }
+  if (description) {
+    //const projectDomInfoDescription = document.querySelector(".project-description-info");
+    //projectDomInfoDescription.textContent = description;
+  }
+};
+
+const parseChangeProjectFormSubmit = (changeProjectForm, projectItem) => {
+  const formData = new FormData(changeProjectForm);
+
+  const projectName = formData.get("project-name");
+  const projectDescription = formData.get("todo-description");
+
+  if (projectName) {
+    projectItem.name = projectName;
+  }
+  if (projectDescription) {
+    projectItem.description = projectDescription;
+  }
+  modifyProjectDom(projectName, projectDescription, projectItem);
+
+  localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
+};
+
+const createChangeProjectFormSubmitListener = (
+  changeProjectForm,
+  projectItem
+) => {
+  changeProjectForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    parseChangeProjectFormSubmit(changeProjectForm, projectItem);
+    changeProjectForm.reset();
+  });
+};
+
+const createChangeProjectForm = (projectItem) => {
+  const projectInfoBottom = document.createElement("div");
+  projectInfoBottom.classList.add("item-info-bottom");
+
+  const changeProjectTitle = document.createElement("h2");
+  changeProjectTitle.textContent = "Change Project Info";
+
+  const FORMROWS = 3;
+  // change project form
+  const changeProjectForm = document.createElement("form");
+  changeProjectForm.setAttribute("Action", "#");
+  changeProjectForm.setAttribute("Method", "Post");
+
+  // project name
+  const newProjectNameLabel = document.createElement("label");
+  newProjectNameLabel.textContent = "New Project Name:";
+  newProjectNameLabel.setAttribute("for", "project-name");
+
+  const newProjectNameInput = document.createElement("textarea");
+  newProjectNameInput.setAttribute("name", "project-name");
+  newProjectNameInput.setAttribute("id", "project-name");
+  newProjectNameInput.setAttribute("maxLength", "70");
+  newProjectNameInput.placeholder = "My awesome project...";
+
+  // project description
+  const newProjectDescriptionLabel = document.createElement("label");
+  newProjectDescriptionLabel.textContent = "Project Description:";
+  newProjectDescriptionLabel.setAttribute("for", "project-description");
+
+  const newProjectDescriptionInput = document.createElement("textarea");
+  newProjectDescriptionInput.setAttribute("id", "project-description");
+  newProjectDescriptionInput.setAttribute("name", "project-description");
+  newProjectDescriptionInput.placeholder = "A project for...";
+
+  const changeProjectSubmitButton = document.createElement("button");
+  changeProjectSubmitButton.setAttribute("type", "submit");
+  changeProjectSubmitButton.classList.add("change-project-button");
+  changeProjectSubmitButton.textContent = "Submit";
+
+  // project form rows
+  const changeProjectFormDivs = [];
+
+  for (let i = 0; i < FORMROWS; i++) {
+    changeProjectFormDivs[i] = document.createElement("div");
+  }
+
+  changeProjectFormDivs[0].appendChild(newProjectNameLabel);
+  changeProjectFormDivs[0].appendChild(newProjectNameInput);
+  changeProjectFormDivs[1].appendChild(newProjectDescriptionLabel);
+  changeProjectFormDivs[1].appendChild(newProjectDescriptionInput);
+  changeProjectFormDivs[2].appendChild(changeProjectSubmitButton);
+
+  for (let i = 0; i < FORMROWS; i++) {
+    changeProjectForm.appendChild(changeProjectFormDivs[i]);
+  }
+
+  createChangeProjectFormSubmitListener(changeProjectForm, projectItem);
+
+  projectInfoBottom.appendChild(changeTodoTitle);
+  projectInfoBottom.appendChild(changeTodoForm);
+  return projectInfoBottom;
+};
+
 // Shows information about a project to the user such as the project's title, when it was created, how many todos it has, as well as how many todos a user has crossed out in that project
 const displayProjectInfo = (projectItem) => {
   const todoContainer = document.querySelector(".todo-container");
 
   const projectInfo = document.createElement("section");
+  const projectInfoTop = document.createElement("div");
+  projectInfoTop.classList.add("item-info-top");
   projectInfo.classList.add("item-info");
   projectInfo.classList.add("project-info");
 
@@ -107,13 +216,15 @@ const displayProjectInfo = (projectItem) => {
   );
   projectTodosCrossedCountInfoRow.appendChild(projectTodosCrossedCountInfo);
 
-  projectInfo.appendChild(projectInfoTitle);
-  projectInfo.appendChild(projectNameInfoRow);
-  projectInfo.appendChild(projectDateCreatedInfoRow);
-  projectInfo.appendChild(projectTodosCountInfoRow);
-  projectInfo.appendChild(projectTodosCrossedCountInfoRow);
+  projectInfoTop.appendChild(projectInfoTitle);
+  projectInfoTop.appendChild(projectNameInfoRow);
+  projectInfoTop.appendChild(projectDateCreatedInfoRow);
+  projectInfoTop.appendChild(projectTodosCountInfoRow);
+  projectInfoTop.appendChild(projectTodosCrossedCountInfoRow);
   projectInfo.appendChild(projectInfoDelete);
 
+  projectInfo.appendChild(projectInfoTop);
+  projectInfo.appendChild(createChangeProjectForm(projectItem));
   todoContainer.appendChild(projectInfo);
 
   removeInfoBoxListener(projectInfoDelete, todoContainer, projectInfo);
@@ -241,8 +352,6 @@ const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
 
 // Updates todo information from the change todo form in DOM
 const modifyTodoDom = (name, priority, dateDue, description, todoItem) => {
-  console.log(todoItem);
-
   if (name) {
     const todoDomName = document.querySelector(`.${todoItem.designation}`);
     todoDomName.textContent = name;
@@ -493,7 +602,7 @@ const displayTodoInfo = (todoItem) => {
 };
 
 //Create the todo element inside the dom along with its options such as the cog and circle
-const createTodoInDom = (content, date, newTodo) => {
+const createTodoInDom = (content, newTodo) => {
   const todoDom = document.createElement("li");
   const circle = document.createElement("div");
   const todoText = document.createElement("p");
@@ -528,7 +637,7 @@ const parseTodoFormSubmit = (todoForm, createToDo) => {
 
   currentView[todoDesignation] = newTodo;
   currentView.todosCount++;
-  const todoDom = createTodoInDom(todoTitle, todoDateCreated, newTodo);
+  const todoDom = createTodoInDom(todoTitle, newTodo);
 
   const todoList = document.querySelector(".todo-list");
   todoList.insertAdjacentElement("beforeend", todoDom);
