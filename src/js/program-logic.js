@@ -83,7 +83,7 @@ const displayProjectInfo = (projectItem) => {
   const projectDateCreatedInfo = document.createElement("p");
   projectDateCreatedInfo.textContent = format(
     projectItem.dateCreated,
-    "cccc MMM dd, yyyy"
+    "ccc MMM dd, yyyy"
   );
 
   projectDateCreatedInfoRow.appendChild(projectDateCreatedInfoTitle);
@@ -239,11 +239,70 @@ const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
   });
 };
 
-const modifyTodoDom = () => {
-  //
+// Updates todo information from the change todo form in DOM
+const modifyTodoDom = (name, priority, dateDue, description, todoItem) => {
+  console.log(todoItem);
+
+  if (name) {
+    const todoDomName = document.querySelector(`.${todoItem.designation}`);
+    todoDomName.textContent = name;
+
+    const todoDomInfoName = document.querySelector(".todo-name-info");
+    todoDomInfoName.textContent = name;
+  }
+  if (priority) {
+    const todoDomInfoPriority = document.querySelector(".todo-priority-info");
+    todoDomInfoPriority.textContent = priority;
+  }
+  if (dateDue) {
+    const todoDomInfodateDue = document.querySelector(".todo-date-due-info");
+    todoDomInfodateDue.textContent = format(dateDue, "ccc MMM dd, yyyy");
+  }
+  if (description) {
+    //const todoDomInfoDescription = document.querySelector(".todo-description-info");
+    //todoDomInfoDescription.textContent = description;
+  }
 };
 
-const modifyTodoObject = (todoItem) => {
+// Assigns data from change Todo Form to the todo itself
+const parseChangeTodoFormSubmit = (changeTodoForm, todoItem) => {
+  const formData = new FormData(changeTodoForm);
+
+  const todoName = formData.get("todo-name");
+  const todoPriority = formData.get("todo-priority");
+  const todoDateDue = new Date(
+    new Date(formData.get("todo-date")).getTime() +
+      new Date(formData.get("todo-date")).getTimezoneOffset() * 60000
+  ).getTime();
+  const todoDescription = formData.get("todo-description");
+
+  if (todoName) {
+    todoItem.title = todoName;
+  }
+  if (todoPriority) {
+    todoItem.priority = todoPriority;
+  }
+  if (todoDateDue) {
+    todoItem.dateDue = todoDateDue;
+  }
+  if (todoDescription) {
+    todoItem.description = todoDescription;
+  }
+  modifyTodoDom(todoName, todoPriority, todoDateDue, todoDescription, todoItem);
+
+  localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
+};
+
+const createChangeTodoFormSubmitListener = (changeTodoForm, todoItem) => {
+  changeTodoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    parseChangeTodoFormSubmit(changeTodoForm, todoItem);
+    changeTodoForm.reset();
+  });
+};
+
+// Creates a form in dom to allow user to change properties of their todo in dom and inside the todo object itself
+const createChangeTodoForm = (todoItem) => {
   const todoInfoBottom = document.createElement("div");
   todoInfoBottom.classList.add("item-info-bottom");
 
@@ -261,11 +320,11 @@ const modifyTodoObject = (todoItem) => {
   newTodoNameLabel.textContent = "New Todo Content:";
   newTodoNameLabel.setAttribute("for", "todo-name");
 
-  const newTodoNameInput = document.createElement("input");
+  const newTodoNameInput = document.createElement("textarea");
   newTodoNameInput.setAttribute("name", "todo-name");
   newTodoNameInput.setAttribute("id", "todo-name");
-  newTodoNameInput.setAttribute("type", "text");
   newTodoNameInput.setAttribute("maxLength", "70");
+  newTodoNameInput.placeholder = "My awesome todo...";
 
   // todo priority
   const newtodoPriorityLabel = document.createElement("label");
@@ -282,10 +341,14 @@ const modifyTodoObject = (todoItem) => {
   newtodoPriorityEmptyOption.textContent = "~Pick an option below~";
   const newtodoPriorityRed = document.createElement("option");
   newtodoPriorityRed.setAttribute("value", "red");
+  newtodoPriorityRed.textContent = "Red";
   const newtodoPriorityYellow = document.createElement("option");
   newtodoPriorityYellow.setAttribute("value", "yellow");
+  newtodoPriorityYellow.textContent = "Yellow";
+
   const newtodoPriorityGreen = document.createElement("option");
   newtodoPriorityGreen.setAttribute("value", "green");
+  newtodoPriorityGreen.textContent = "Green";
 
   newtodoPriority.appendChild(newtodoPriorityEmptyOption);
   newtodoPriority.appendChild(newtodoPriorityRed);
@@ -310,6 +373,8 @@ const modifyTodoObject = (todoItem) => {
   const newTodoDescriptionInput = document.createElement("textarea");
   newTodoDescriptionInput.setAttribute("id", "todo-description");
   newTodoDescriptionInput.setAttribute("name", "todo-description");
+  newTodoDescriptionInput.placeholder =
+    "I need to get this done by tomorrow...";
 
   const changeTodoSubmitButton = document.createElement("button");
   changeTodoSubmitButton.setAttribute("type", "submit");
@@ -336,6 +401,8 @@ const modifyTodoObject = (todoItem) => {
   for (let i = 0; i < FORMROWS; i++) {
     changeTodoForm.appendChild(changeTodoFormDivs[i]);
   }
+
+  createChangeTodoFormSubmitListener(changeTodoForm, todoItem);
 
   todoInfoBottom.appendChild(changeTodoTitle);
   todoInfoBottom.appendChild(changeTodoForm);
@@ -369,6 +436,7 @@ const displayTodoInfo = (todoItem) => {
   todoNameInfoTitle.textContent = "Todo Content:";
   const todoNameInfo = document.createElement("p");
   todoNameInfo.textContent = todoItem.title;
+  todoNameInfo.classList.add("todo-name-info");
 
   todoNameInfoRow.appendChild(todoNameInfoTitle);
   todoNameInfoRow.appendChild(todoNameInfo);
@@ -378,7 +446,7 @@ const displayTodoInfo = (todoItem) => {
   const todoDateCreatedInfo = document.createElement("p");
   todoDateCreatedInfo.textContent = format(
     todoItem.dateCreated,
-    "cccc MMM dd, yyyy"
+    "ccc MMM dd, yyyy"
   );
 
   todoDateCreatedInfoRow.appendChild(todoDateCreatedInfoTitle);
@@ -388,6 +456,7 @@ const displayTodoInfo = (todoItem) => {
   todoPriorityInfoTitle.textContent = "Priority:";
   const todoPriorityInfo = document.createElement("p");
   todoPriorityInfo.textContent = todoItem.priority;
+  todoPriorityInfo.classList.add("todo-priority-info");
 
   todoPriorityInfoRow.appendChild(todoPriorityInfoTitle);
   todoPriorityInfoRow.appendChild(todoPriorityInfo);
@@ -395,7 +464,15 @@ const displayTodoInfo = (todoItem) => {
   const todoDateDueInfoTitle = document.createElement("h3");
   todoDateDueInfoTitle.textContent = "Date Due:";
   const todoDateDueInfo = document.createElement("p");
-  todoDateDueInfo.textContent = todoItem.dateDue;
+  if (todoItem.dateDue == "none") {
+    todoDateDueInfo.textContent = "none";
+  } else {
+    todoDateDueInfo.textContent = format(
+      new Date(todoItem.dateDue).getTime(),
+      "ccc MMM dd, yyyy"
+    );
+  }
+  todoDateDueInfo.classList.add("todo-date-due-info");
 
   todoDateDueInfoRow.appendChild(todoDateDueInfoTitle);
   todoDateDueInfoRow.appendChild(todoDateDueInfo);
@@ -408,7 +485,7 @@ const displayTodoInfo = (todoItem) => {
 
   todoInfo.appendChild(todoInfoTop);
   todoInfo.appendChild(todoInfoDelete);
-  todoInfo.appendChild(modifyTodoObject(todoInfo, todoItem));
+  todoInfo.appendChild(createChangeTodoForm(todoItem));
 
   todoContainer.appendChild(todoInfo);
 
@@ -420,15 +497,10 @@ const createTodoInDom = (content, date, newTodo) => {
   const todoDom = document.createElement("li");
   const circle = document.createElement("div");
   const todoText = document.createElement("p");
-  const todoDate = document.createElement("span");
+  todoText.classList.add(newTodo.designation);
   const changeTodo = document.createElement("img");
 
   todoText.textContent = content;
-  try {
-    todoDate.textContent = `Created: ${format(date, "EE MMM do, yyyy")}`;
-  } catch (e) {
-    console.log(e);
-  }
 
   circle.classList.add("circle");
 
@@ -439,7 +511,6 @@ const createTodoInDom = (content, date, newTodo) => {
   todoDom.classList.add("to-do");
   todoDom.appendChild(circle);
   todoDom.appendChild(todoText);
-  todoDom.appendChild(todoDate);
   todoDom.appendChild(changeTodo);
   strikethroughListener(todoDom, newTodo, circle, changeTodo);
   return todoDom;

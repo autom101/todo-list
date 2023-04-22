@@ -26,12 +26,11 @@ onload = () => {
     if (error) {
       localStorage.removeItem("My_Projects");
     }
-  }
+  };
 
   const My_Projects = JSON.parse(localStorage.getItem("My_Projects")) || {};
 
   body.appendChild(createTodoUI(My_Projects));
-  console.log(My_Projects);
   createLogic(
     My_Projects,
     createProject,

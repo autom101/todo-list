@@ -494,10 +494,23 @@ Todo Info Styling
   margin-top: 5rem;
 }
 
-.item-info-bottom input,
-.item-info-bottom select,
-.item-info-bottom textarea {
+.item-info-bottom #todo-name,
+.item-info-bottom #todo-description {
+  height: 7rem;
+  resize: none;
+}
+
+.item-info-bottom #todo-name,
+.item-info-bottom #todo-date,
+.item-info-bottom #todo-priority,
+.item-info-bottom #todo-description {
+  width: 50%;
   margin-left: auto;
+  border: 1px solid none;
+  border-radius: 6px;
+
+  outline: none;
+  font-size: 16px;
 }
 
 .item-info-bottom #todo-date {
