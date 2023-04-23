@@ -455,7 +455,6 @@ Todo Info Styling
   font-weight: 800;
 }
 
-.item-info-top h2:hover,
 .item-info-top div p:hover,
 .item-info-bottom input#todo-name,
 .item-info-bottom textarea {
@@ -495,7 +494,9 @@ Todo Info Styling
 }
 
 .item-info-bottom #todo-name,
-.item-info-bottom #todo-description {
+.item-info-bottom #todo-description,
+.item-info-bottom #project-name,
+.item-info-bottom #project-description {
   height: 7rem;
   resize: none;
 }
@@ -503,7 +504,9 @@ Todo Info Styling
 .item-info-bottom #todo-name,
 .item-info-bottom #todo-date,
 .item-info-bottom #todo-priority,
-.item-info-bottom #todo-description {
+.item-info-bottom #todo-description,
+.item-info-bottom #project-name,
+.item-info-bottom #project-description {
   width: 50%;
   margin-left: auto;
   border: 1px solid none;
@@ -522,7 +525,7 @@ Todo Info Styling
   margin-top: 1rem;
 }
 
-.item-info-bottom .change-todo-button {
+.item-info-bottom .change-item-button {
   width: 8rem;
   height: 3rem;
 
@@ -540,7 +543,7 @@ Todo Info Styling
   line-height: 3rem;
 }
 
-.change-todo-button:hover {
+.change-item-button:hover {
   cursor: pointer;
   opacity: 0.9;
 }

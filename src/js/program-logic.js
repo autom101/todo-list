@@ -19,11 +19,7 @@ const showProjectTodos = (project) => {
     if (project[todo].title) {
       index++;
       setTimeout(() => {
-        let todoTitle = createTodoInDom(
-          project[todo].title,
-          project[todo].dateCreated,
-          project[todo]
-        );
+        let todoTitle = createTodoInDom(project[todo].title, project[todo]);
         project[todo].isCrossed && strikethroughTodo(todoTitle);
 
         todoList.appendChild(todoTitle);
@@ -70,7 +66,7 @@ const parseChangeProjectFormSubmit = (changeProjectForm, projectItem) => {
   const formData = new FormData(changeProjectForm);
 
   const projectName = formData.get("project-name");
-  const projectDescription = formData.get("todo-description");
+  const projectDescription = formData.get("project-description");
 
   if (projectName) {
     projectItem.name = projectName;
@@ -130,7 +126,7 @@ const createChangeProjectForm = (projectItem) => {
 
   const changeProjectSubmitButton = document.createElement("button");
   changeProjectSubmitButton.setAttribute("type", "submit");
-  changeProjectSubmitButton.classList.add("change-project-button");
+  changeProjectSubmitButton.classList.add("change-item-button");
   changeProjectSubmitButton.textContent = "Submit";
 
   // project form rows
@@ -152,8 +148,8 @@ const createChangeProjectForm = (projectItem) => {
 
   createChangeProjectFormSubmitListener(changeProjectForm, projectItem);
 
-  projectInfoBottom.appendChild(changeTodoTitle);
-  projectInfoBottom.appendChild(changeTodoForm);
+  projectInfoBottom.appendChild(changeProjectTitle);
+  projectInfoBottom.appendChild(changeProjectForm);
   return projectInfoBottom;
 };
 
@@ -182,6 +178,7 @@ const displayProjectInfo = (projectItem) => {
   const projectNameInfoTitle = document.createElement("h3");
   projectNameInfoTitle.textContent = "Project Name:";
   const projectNameInfo = document.createElement("p");
+  projectNameInfo.classList.add("project-name-info");
   projectNameInfo.textContent = projectItem.name;
 
   projectNameInfoRow.appendChild(projectNameInfoTitle);
@@ -221,9 +218,9 @@ const displayProjectInfo = (projectItem) => {
   projectInfoTop.appendChild(projectDateCreatedInfoRow);
   projectInfoTop.appendChild(projectTodosCountInfoRow);
   projectInfoTop.appendChild(projectTodosCrossedCountInfoRow);
-  projectInfo.appendChild(projectInfoDelete);
 
   projectInfo.appendChild(projectInfoTop);
+  projectInfo.appendChild(projectInfoDelete);
   projectInfo.appendChild(createChangeProjectForm(projectItem));
   todoContainer.appendChild(projectInfo);
 
@@ -257,6 +254,7 @@ const addToProjectsList = (newProject, index) => {
 
   newTitle.classList.add("project-title");
   newTitle.classList.add(`project-${index}`);
+  newTitle.classList.add(`${newProject.designation}`);
   newTitle.textContent = newProject.name;
 
   changeProjectTitle.src = cog;
@@ -276,7 +274,11 @@ const createProjectTitleListener = (createProject, index) => {
   const addProject = document.querySelector(".plus");
 
   addProject.addEventListener("click", () => {
-    const newProject = createProject("Project " + index, Date.now());
+    const newProject = createProject(
+      "Project " + index,
+      Date.now(),
+      "newProject" + index
+    );
     My_Projects["newProject" + index] = newProject;
     addToProjectsList(newProject, index);
     index++;
@@ -487,7 +489,7 @@ const createChangeTodoForm = (todoItem) => {
 
   const changeTodoSubmitButton = document.createElement("button");
   changeTodoSubmitButton.setAttribute("type", "submit");
-  changeTodoSubmitButton.classList.add("change-todo-button");
+  changeTodoSubmitButton.classList.add("change-item-button");
   changeTodoSubmitButton.textContent = "Submit";
 
   // todo form rows
@@ -544,6 +546,7 @@ const displayTodoInfo = (todoItem) => {
   const todoNameInfoTitle = document.createElement("h3");
   todoNameInfoTitle.textContent = "Todo Content:";
   const todoNameInfo = document.createElement("p");
+
   todoNameInfo.textContent = todoItem.title;
   todoNameInfo.classList.add("todo-name-info");
 
@@ -554,7 +557,7 @@ const displayTodoInfo = (todoItem) => {
   todoDateCreatedInfoTitle.textContent = "Date Created:";
   const todoDateCreatedInfo = document.createElement("p");
   todoDateCreatedInfo.textContent = format(
-    todoItem.dateCreated,
+    new Date(todoItem.dateCreated).getTime(),
     "ccc MMM dd, yyyy"
   );
 
