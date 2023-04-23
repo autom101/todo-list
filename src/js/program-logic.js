@@ -57,8 +57,10 @@ const modifyProjectDom = (name, description, projectItem) => {
     projectDomInfoName.textContent = name;
   }
   if (description) {
-    //const projectDomInfoDescription = document.querySelector(".project-description-info");
-    //projectDomInfoDescription.textContent = description;
+    const projectDomInfoDescription = document.querySelector(
+      ".project-description-info"
+    );
+    projectDomInfoDescription.textContent = description;
   }
 };
 
@@ -174,6 +176,7 @@ const displayProjectInfo = (projectItem) => {
   const projectDateCreatedInfoRow = document.createElement("div");
   const projectTodosCountInfoRow = document.createElement("div");
   const projectTodosCrossedCountInfoRow = document.createElement("div");
+  const projectDescriptionRow = document.createElement("div");
 
   const projectNameInfoTitle = document.createElement("h3");
   projectNameInfoTitle.textContent = "Project Name:";
@@ -196,7 +199,7 @@ const displayProjectInfo = (projectItem) => {
   projectDateCreatedInfoRow.appendChild(projectDateCreatedInfo);
 
   const projectTodosCountInfoTitle = document.createElement("h3");
-  projectTodosCountInfoTitle.textContent = "Todos Count:";
+  projectTodosCountInfoTitle.textContent = "Current Todos:";
   const projectTodosCountInfo = document.createElement("p");
   projectTodosCountInfo.textContent = projectItem.todosCount;
 
@@ -213,11 +216,25 @@ const displayProjectInfo = (projectItem) => {
   );
   projectTodosCrossedCountInfoRow.appendChild(projectTodosCrossedCountInfo);
 
+  const projectDescriptionTitle = document.createElement("h3");
+  projectDescriptionTitle.textContent = "Description:";
+  const projectDescriptionInfo = document.createElement("p");
+  projectDescriptionInfo.classList.add("project-description-info");
+  if (projectItem.description == "none") {
+    projectDescriptionInfo.textContent = "none";
+  } else {
+    projectDescriptionInfo.textContent = projectItem.description;
+  }
+
+  projectDescriptionRow.appendChild(projectDescriptionTitle);
+  projectDescriptionRow.appendChild(projectDescriptionInfo);
+
   projectInfoTop.appendChild(projectInfoTitle);
   projectInfoTop.appendChild(projectNameInfoRow);
   projectInfoTop.appendChild(projectDateCreatedInfoRow);
   projectInfoTop.appendChild(projectTodosCountInfoRow);
   projectInfoTop.appendChild(projectTodosCrossedCountInfoRow);
+  projectInfoTop.appendChild(projectDescriptionRow);
 
   projectInfo.appendChild(projectInfoTop);
   projectInfo.appendChild(projectInfoDelete);
@@ -315,7 +332,7 @@ const strikethroughTodo = (
 
   deleteTodoListener(todoDom, deleteTodo, currentTodo);
 
-  todoDom.querySelector("p").classList.toggle("crossed");
+  todoDom.querySelector(".todo-text").classList.toggle("crossed");
 
   todoDom.removeChild(todoCog);
 
@@ -345,7 +362,7 @@ const strikethroughTodoDom = (todoDom, newTodo, circle, todoCog) => {
   localStorage.setItem("My_Projects", JSON.stringify(My_Projects));
 };
 
-// Creates an event listener to "strikethrough" or "cross out" a to-do when a user clicks on it
+// Creates an event listener to "strikethrough" or "cross out" a todo when a user clicks on it
 const strikethroughListener = (todoTitle, newTodo, circle, todoCog) => {
   circle.addEventListener("click", () => {
     strikethroughTodoDom(todoTitle, newTodo, circle, todoCog);
@@ -370,8 +387,10 @@ const modifyTodoDom = (name, priority, dateDue, description, todoItem) => {
     todoDomInfodateDue.textContent = format(dateDue, "ccc MMM dd, yyyy");
   }
   if (description) {
-    //const todoDomInfoDescription = document.querySelector(".todo-description-info");
-    //todoDomInfoDescription.textContent = description;
+    const todoDomInfoDescription = document.querySelector(
+      ".todo-description-info"
+    );
+    todoDomInfoDescription.textContent = description;
   }
 };
 
@@ -542,6 +561,7 @@ const displayTodoInfo = (todoItem) => {
   const todoDateCreatedInfoRow = document.createElement("div");
   const todoPriorityInfoRow = document.createElement("div");
   const todoDateDueInfoRow = document.createElement("div");
+  const todoDescriptionInfoRow = document.createElement("div");
 
   const todoNameInfoTitle = document.createElement("h3");
   todoNameInfoTitle.textContent = "Todo Content:";
@@ -589,11 +609,25 @@ const displayTodoInfo = (todoItem) => {
   todoDateDueInfoRow.appendChild(todoDateDueInfoTitle);
   todoDateDueInfoRow.appendChild(todoDateDueInfo);
 
+  const todoDescriptionTitle = document.createElement("h3");
+  todoDescriptionTitle.textContent = "Description:";
+  const todoDescriptionInfo = document.createElement("p");
+  todoDescriptionInfo.classList.add("todo-description-info");
+  if (todoItem.description == "none") {
+    todoDescriptionInfo.textContent = "none";
+  } else {
+    todoDescriptionInfo.textContent = todoItem.description;
+  }
+
+  todoDescriptionInfoRow.appendChild(todoDescriptionTitle);
+  todoDescriptionInfoRow.appendChild(todoDescriptionInfo);
+
   todoInfoTop.appendChild(todoInfoTitle);
   todoInfoTop.appendChild(todoNameInfoRow);
   todoInfoTop.appendChild(todoDateCreatedInfoRow);
   todoInfoTop.appendChild(todoPriorityInfoRow);
   todoInfoTop.appendChild(todoDateDueInfoRow);
+  todoInfoTop.appendChild(todoDescriptionInfoRow);
 
   todoInfo.appendChild(todoInfoTop);
   todoInfo.appendChild(todoInfoDelete);
@@ -609,6 +643,7 @@ const createTodoInDom = (content, newTodo) => {
   const todoDom = document.createElement("li");
   const circle = document.createElement("div");
   const todoText = document.createElement("p");
+  todoText.classList.add("todo-text");
   todoText.classList.add(newTodo.designation);
   const changeTodo = document.createElement("img");
 
@@ -620,7 +655,7 @@ const createTodoInDom = (content, newTodo) => {
   changeTodo.classList.add("cog");
   createcogEventListener(changeTodo, newTodo, "todo");
 
-  todoDom.classList.add("to-do");
+  todoDom.classList.add("todo");
   todoDom.appendChild(circle);
   todoDom.appendChild(todoText);
   todoDom.appendChild(changeTodo);
