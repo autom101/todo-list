@@ -180,10 +180,17 @@ img.plus {
 
 .project-title {
   transition: 0.3s ease;
+  word-break: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(80%);
 }
 
 .project-title:hover {
   cursor: pointer;
+  overflow: visible;
+  white-space: normal;
 }
 
 .project-title:hover::before {
@@ -407,6 +414,13 @@ Todo/Project Info Styling
   gap: 1rem;
 
   position: relative;
+  -ms-overflow-style: none; /*for Internet Explorer, Edge*/
+  scrollbar-width: none; /*for Firefox*/
+  overflow-y: scroll;
+}
+
+.item-info::-webkit-scrollbar {
+  display: none;
 }
 
 .info-delete {
