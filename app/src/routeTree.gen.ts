@@ -24,7 +24,7 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   path: "/",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import("./routes/index.lazy").then((d) => d.Route))
+} as any)
 
 // Populate the FileRoutesByPath interface
 
